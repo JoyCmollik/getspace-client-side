@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TravelInpiration = () => {
+const TravelInspiration = () => {
 	return (
 		<div>
 			<h4>This is a travelinspiration.</h4>
@@ -8,4 +8,4 @@ const TravelInpiration = () => {
 	);
 };
 
-export default TravelInpiration;
+export default TravelInspiration;
