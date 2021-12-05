@@ -1,9 +1,10 @@
 import React from 'react';
+import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 
 const FeaturedPlaces = () => {
 	return (
-		<div>
-			<h4>This is a featuredplaces.</h4>
+		<div className='py-20'>
+			<SectionTitle title='highlights in france' />
 		</div>
 	);
 };

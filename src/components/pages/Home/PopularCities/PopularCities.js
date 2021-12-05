@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 import PopularCityCard from './PopularCityCard';
 
 const image =
@@ -8,16 +9,7 @@ const PopularCities = () => {
 	return (
 		<div className='bg-dark py-20'>
 			<div className='container mx-auto'>
-				{/* title */}
-				<div className='space-y-4 mb-10'>
-					<h4 className='text-2xl text-white font-semibold'>
-						Popular City
-					</h4>
-					<p
-						className='mx-auto bg-brand'
-						style={{ width: 70, height: 1 }}
-					/>
-				</div>
+				<SectionTitle title='popular city' mode='dark' />
 				{/* content */}
 				<div className='flex justify-center items-center space-x-8'>
 					<PopularCityCard />
