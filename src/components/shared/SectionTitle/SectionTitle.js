@@ -2,7 +2,7 @@ import React from 'react';
 
 const SectionTitle = ({ title, mode }) => {
 	return (
-		<div className='space-y-4 mb-10'>
+		<div className='space-y-4 mb-10 text-center'>
 			<h4
 				className={`text-2xl font-semibold capitalize ${
 					mode === 'dark' && 'text-white'
