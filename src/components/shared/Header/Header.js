@@ -1,4 +1,8 @@
 import React from "react";
+import { FaUmbrellaBeach } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
+import { BiLogInCircle } from "react-icons/bi";
+import { FaGlobe } from "react-icons/fa";
 
 const Header = () => {
   return (
@@ -24,7 +28,7 @@ const Header = () => {
            
           "
               >
-                <i className="fas fa-umbrella-beach text-brand text-4xl"> </i>
+                <FaUmbrellaBeach className="fas fa-umbrella-beach text-brand text-4xl mb-4" />
                 &nbsp; GetSpace
               </p>
             </div>
@@ -69,13 +73,13 @@ const Header = () => {
                 Become a Host
               </button>
               <button className="text-white mr-8">
-                {/* <i class="fas fa-globe"></i> */}
+                <FaGlobe />
               </button>
             </span>
-            <div className="flex justify-center md:block">
+            <div className="flex  md:block mr-5 ">
               <button className="text-white">
-                {/* <i class="fas fa-sign-in-alt text-white"></i> Sign in */}{" "}
                 Sign in
+                <BiLogInCircle className="text-white display-inline ml-4" />
               </button>
             </div>
           </div>
@@ -90,7 +94,7 @@ const Header = () => {
               placeholder="Where are you going?"
               className=" focus:outline-none mx-5 border-rounded bg-transparent flex-grow placeholder-black text-center"
             />
-            {/* <i class="fas fa-search mr-5 bg-brand p-2 rounded-full cursor-pointer"></i> */}
+            <FiSearch className="bg-brand text-3xl rounded-full mr-5 px-1" />
           </div>
           <div></div>
         </div>
