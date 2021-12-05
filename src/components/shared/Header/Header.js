@@ -69,12 +69,13 @@ const Header = () => {
                 Become a Host
               </button>
               <button className="text-white mr-8">
-                <i class="fas fa-globe"></i>
+                {/* <i class="fas fa-globe"></i> */}
               </button>
             </span>
             <div className="flex justify-center md:block">
               <button className="text-white">
-                <i class="fas fa-sign-in-alt text-white"></i> Sign in
+                {/* <i class="fas fa-sign-in-alt text-white"></i> Sign in */}{" "}
+                Sign in
               </button>
             </div>
           </div>
@@ -89,7 +90,7 @@ const Header = () => {
               placeholder="Where are you going?"
               className=" focus:outline-none mx-5 border-rounded bg-transparent flex-grow placeholder-black text-center"
             />
-            <i class="fas fa-search mr-5 bg-brand p-2 rounded-full cursor-pointer"></i>
+            {/* <i class="fas fa-search mr-5 bg-brand p-2 rounded-full cursor-pointer"></i> */}
           </div>
           <div></div>
         </div>
