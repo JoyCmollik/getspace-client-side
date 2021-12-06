@@ -18,18 +18,19 @@ const Header = () => {
       md:flex md:justify-between md:items-center
     "
         >
-          <div className="flex items-center justify-between">
+          <div className="">
             <div>
               <p
                 className="
             text-xl
             font-bold
             text-white
+            flex items-center justify-between
            
           "
               >
-                <FaUmbrellaBeach className="fas fa-umbrella-beach text-brand text-4xl mb-4" />
-                &nbsp; GetSpace
+                <FaUmbrellaBeach className=" text-brand text-4xl mb-4" />
+                &nbsp; <span>GetSpace</span>
               </p>
             </div>
           </div>
@@ -76,9 +77,9 @@ const Header = () => {
                 <FaGlobe />
               </button>
             </span>
-            <div className="flex  md:block mr-5 ">
-              <button className="text-white">
-                Sign in
+            <div className="  md:block mr-5 ">
+              <button className="text-white flex items-center">
+                <span>Sign in</span>
                 <BiLogInCircle className="text-white display-inline ml-4" />
               </button>
             </div>
