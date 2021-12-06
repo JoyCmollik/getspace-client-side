@@ -44,7 +44,6 @@ const Header = () => {
           
             md:mx-4 md:my-0
           '
-								href='#'
 							>
 								Places to stay
 							</p>
@@ -54,7 +53,6 @@ const Header = () => {
             text-white
             md:mx-4 md:my-0
           '
-								href='#'
 							>
 								Experiences
 							</p>
@@ -64,7 +62,6 @@ const Header = () => {
             text-white
             md:mx-4 md:my-0
           '
-								href='#'
 							>
 								Online Experiences
 							</p>
@@ -97,7 +94,6 @@ const Header = () => {
 						/>
 						<FiSearch className='bg-brand text-3xl rounded-full mr-5 px-1' />
 					</div>
-					<div></div>
 				</div>
 			</form>
 		</div>
