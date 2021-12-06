@@ -1,10 +1,12 @@
 import React from 'react';
+import SectionTitle from '../../../shared/SectionTitle/SectionTitle'
 
 const TravelInspiration = () => {
 	return (
-		
-		<section className="container px-48 py-24 mx-auto bg-blue-200">
-			<h2 className="text-center font-medium text-3xl pb-14">Travel Inspiration</h2>
+		<section className="py-20 bg-blue-200">
+			<div className='container mx-auto'>
+				<SectionTitle title='Tavel Inspiration'  />
+			
 			
 			
 			<div className="mb-12 grid grid-cols-3 gap-8">
@@ -31,7 +33,7 @@ const TravelInspiration = () => {
 			<div className="text-center ">
 			<button className="px-4 border-2 rounded-3xl h-10 "><a href="/#" >View More</a></button>
 			</div>
-
+			</div>
 		</section>
 	);
 };
