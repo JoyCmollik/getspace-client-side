@@ -3,22 +3,32 @@ import { BiAperture } from "react-icons/bi";
 import { FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsTwitter, BsLinkedin, BsYoutube} from "react-icons/bs";
 
+const firstColumnLinks = [
+	{href:'#', text: 'getSpace Skills'},
+	{href:'#', text: 'getSpace Flow'},
+	{href:'#', text: 'Government'},
+	{href:'#', text: 'Gift of getspace'},
+	{href:'#', text: 'View Pricing'},
+	{href:'#', text: 'Contact Safes'},
+	{href:'#', text: 'Skill up for free'},
+];
+
+
+
 const Footer = () => {
 	return (
-		<div className="pt-28 pb-20 pl-20 bg-gray-900 text-gray-200">
-			<div className="max-w-7xl mx-auto">
+		<div className="py-20 bg-gray-900 text-gray-200">
+			<div className="container mx-auto">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
 				
-				<div className="mb-10 pr-10">
+				<div className="mb-10">
 						<h4 className="text-sm font-bold">SOLUTIONS<br/><br/></h4>
 						<ul className="text-gray-500">
-							<li><a href="/#" className="pb-4 hover:text-white">Pluralsight Skills</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Pluralsight Flow</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Government</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Gift of Pluralsight<br/></a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">View Pricing</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Contact Sales</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Skill up for free<br/></a></li>
+							{
+								firstColumnLinks.map(({href, text}, linkIdx) => <li>
+								<a href={href} className="pb-4 hover:text-white">{text}</a>
+							</li>)
+							}
 						</ul>
 					</div>
 
@@ -94,16 +104,20 @@ const Footer = () => {
 						<div className="pl-11 flex">
 						<div className="mb-10 pr-10">
 							<h4 className="text-sm font-bold"><a href="/#" className="pb-4 hover:text-yellow-600">
-Terms of Use</a></h4>
+							Terms of Use</a></h4>
 							</div>
 						<div className="mb-10 pr-10">
-							<h4 className="text-sm font-bold"><a href="/#" className="pb-4 hover:text-yellow-600">
-Privacy Policy</a></h4>
+							<h4 className="text-sm font-bold">
+								<a href="/#" className="pb-4 hover:text-yellow-600">
+								Privacy Policy</a>
+							</h4>
 						</div>
 						<div className="mb-10 pr-10">
-							<h4 className="text-sm font-bold"><a href="/#" className="pb-4 hover:text-yellow-600">Modern Slavery Act Transparency Statement
-</a></h4>
-</div>
+							<h4 className="text-sm font-bold">
+								<a href="/#" className="pb-4 hover:text-yellow-600">Modern Slavery Act Transparency Statement
+								</a>
+							</h4>
+						</div>
 						
 						<i className="inline pr-2.5"><a href="/#" className="pb-4 hover:text-yellow-600"><FaFacebookF/></a></i>
 						<i className="inline pr-2.5"><a href="/#" className="pb-4 hover:text-yellow-600"><BsInstagram/></a></i>
