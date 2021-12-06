@@ -1,9 +1,10 @@
 import React from 'react';
+import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 
 const CategoryCarousel = () => {
 	return (
-		<section className="container px-48 py-24 mx-auto">
-			<h2 className="text-center font-medium text-3xl pb-14">Explore by</h2>
+		<section className="container py-20 mx-auto">
+			<SectionTitle title='Explore by' />
 			
 			<div className="mb-12 grid grid-cols-4 gap-8">
 				<div>
