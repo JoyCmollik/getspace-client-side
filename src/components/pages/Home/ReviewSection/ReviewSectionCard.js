@@ -1,5 +1,5 @@
-import { Avatar, Rating } from '@mui/material';
 import React from 'react';
+import { Avatar, Rating } from '@mui/material';
 
 const ReviewSectionCard = () => {
 	return (
