@@ -4,13 +4,47 @@ import { FaFacebookF } from "react-icons/fa";
 import { BsInstagram, BsTwitter, BsLinkedin, BsYoutube} from "react-icons/bs";
 
 const firstColumnLinks = [
-	{href:'#', text: 'getSpace Skills'},
-	{href:'#', text: 'getSpace Flow'},
+	{href:'#', text: 'GetSpace Skills'},
+	{href:'#', text: 'GetSpace Flow'},
 	{href:'#', text: 'Government'},
 	{href:'#', text: 'Gift of getspace'},
 	{href:'#', text: 'View Pricing'},
 	{href:'#', text: 'Contact Safes'},
 	{href:'#', text: 'Skill up for free'},
+];
+const secondColumnLinks = [
+	{href:'#', text: 'Browse library'},
+	{href:'#', text: 'Role IQ'},
+	{href:'#', text: 'Skill IQ'},
+	{href:'#', text: 'Iris'},
+	{href:'#', text: 'Authors'},
+	{href:'#', text: 'Professional Services'},
+	{href:'#', text: 'Technology Index'},
+];
+const thirdColumnLinks = [
+	{href:'#', text: 'About us'},
+	{href:'#', text: 'Customer stories'},
+	{href:'#', text: 'Careers'},
+	{href:'#', text: 'Blog'},
+	{href:'#', text: 'Newsroom'},
+	{href:'#', text: 'Resource center'},
+	{href:'#', text: 'Guides'},
+];
+const fourthColumnLinks = [
+	{href:'#', text: 'Download Getspace'},
+	{href:'#', text: 'Events'},
+	{href:'#', text: 'Teach'},
+	{href:'#', text: 'Partners'},
+	{href:'#', text: 'Affiliate Partners'},
+	{href:'#', text: 'Getspace.org'},
+	{href:'#', text: 'Subscribe'},
+];
+const fifthColumnLinks = [
+	{href:'#', text: 'Contact'},
+	{href:'#', text: 'Help center'},
+	{href:'#', text: 'IP whitelist'},
+	{href:'#', text: 'Sitemap'},
+	
 ];
 
 
@@ -35,50 +69,44 @@ const Footer = () => {
 					<div className="mb-10 pr-10">
 						<h4 className="text-sm font-bold">PLATFORM<br/><br/></h4>
 						<ul className="text-gray-500">
-							<li><a href="/#" className="pb-4 hover:text-white">Browse library</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Role IQ</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Skill IQ</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Iris<br/></a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Authors</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Professional Services</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Technology Index<br/></a></li>
+						{
+								secondColumnLinks.map(({href, text}, linkIdx) => <li>
+								<a href={href} className="pb-4 hover:text-white">{text}</a>
+							</li>)
+							}
 						</ul>
 					</div>
 
 					<div className="mb-10 pr-10">
 						<h4 className="text-sm font-bold">COMPANY<br/><br/></h4>
 						<ul className="text-gray-500">
-							<li><a href="/#" className="pb-4 hover:text-white">About us</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Customer stories</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Careers</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Blog<br/></a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Newsroom</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Resource center</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Guides<br/></a></li>
+						{
+								thirdColumnLinks.map(({href, text}, linkIdx) => <li>
+								<a href={href} className="pb-4 hover:text-white">{text}</a>
+							</li>)
+							}
 						</ul>
 					</div>
 
 					<div className="mb-10 pr-10">
 						<h4 className="text-sm font-bold">RESOURCES<br/><br/></h4>
 						<ul className="text-gray-500">
-							<li><a href="/#" className="pb-4 hover:text-white">Download Pluralsight</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Events</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Teach</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Partners<br/></a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Affiliate Partners</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">PluralsightOne.org</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Subscribe<br/></a></li>
+						{
+								fourthColumnLinks.map(({href, text}, linkIdx) => <li>
+								<a href={href} className="pb-4 hover:text-white">{text}</a>
+							</li>)
+							}
 						</ul>
 					</div>
 
 					<div className="mb-10 pr-10">
 						<h4 className="text-sm font-bold">SUPPORT<br/><br/></h4>
 						<ul className="text-gray-500">
-							<li><a href="/#" className="pb-4 hover:text-white">Contact</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Help center</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">IP whitelist</a></li>
-							<li><a href="/#" className="pb-4 hover:text-white">Sitemap</a><br/></li>
-							
+						{
+								fifthColumnLinks.map(({href, text}, linkIdx) => <li>
+								<a href={href} className="pb-4 hover:text-white">{text}</a>
+							</li>)
+							}
 						</ul>
 					</div>
 				 </div>	
