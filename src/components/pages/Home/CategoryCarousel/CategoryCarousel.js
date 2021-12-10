@@ -1,7 +1,11 @@
 import React from 'react';
 import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 
+
+
+
 const CategoryCarousel = () => {
+
 	return (
 		<section className="container py-20 mx-auto">
 			<SectionTitle title='Explore by' />
