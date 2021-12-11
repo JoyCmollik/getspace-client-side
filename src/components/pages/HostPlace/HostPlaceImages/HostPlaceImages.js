@@ -8,7 +8,12 @@ const HostPlaceImages = () => {
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
-			<div className='bg-brand flex justify-center items-center p-10'>
+			<div
+				className='bg-brand flex justify-center items-center p-10'
+				style={{
+					background: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)) ,url(https://i.ibb.co/Kb1vN76/11-Fuchsia.png) center/cover`,
+				}}
+			>
 				<h1 className='text-5xl text-white font-semibold'>
 					Next, let's add some photos of your place
 				</h1>

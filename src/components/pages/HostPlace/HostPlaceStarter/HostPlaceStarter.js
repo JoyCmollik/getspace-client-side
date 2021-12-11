@@ -6,7 +6,12 @@ import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 const HostPlaceStarter = () => {
 	return (
 		<div className='h-screen grid grid-cols-2'>
-			<div className='bg-para p-10'></div>
+			<div
+				className='bg-para p-10'
+				style={{
+					background: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)) ,url(https://i.ibb.co/sFp3WBZ/18-Buttercup.png) center/cover`,
+				}}
+			></div>
 			<div className='bg-dark p-10 flex flex-col'>
 				<HostPlaceHeader mode='dark' />
 				<div className='flex-grow flex flex-col space-y-4 justify-center items-center'>
@@ -19,7 +24,7 @@ const HostPlaceStarter = () => {
 					</p>
 				</div>
 				<div className='border-t border-para py-4 flex justify-end'>
-					<Link to='/host/type'>
+					<Link to='/host/place'>
 						<PrimaryBtn text="Let's go!" />
 					</Link>
 				</div>

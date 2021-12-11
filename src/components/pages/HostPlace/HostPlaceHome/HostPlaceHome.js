@@ -117,7 +117,7 @@ const HostPlaceHome = () => {
 		<>
 			<Routes>
 				<Route
-					path='type'
+					path='place'
 					element={<HostPlaceType hostData={hostData} />}
 				/>
 				<Route

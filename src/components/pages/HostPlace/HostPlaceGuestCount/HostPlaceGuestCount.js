@@ -68,7 +68,12 @@ const HostPlaceGuestCount = () => {
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
-			<div className='bg-brand flex justify-center items-center p-10'>
+			<div
+				className='bg-brand flex justify-center items-center p-10'
+				style={{
+					background: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)) ,url(https://i.ibb.co/ZXv7C4w/01-Royal-Heath.png) center/cover`,
+				}}
+			>
 				<h1 className='text-5xl text-white font-semibold'>
 					How many guests would you like to welcome?
 				</h1>

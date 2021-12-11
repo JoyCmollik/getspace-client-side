@@ -108,7 +108,12 @@ const HostPlaceAmenities = () => {
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
-			<div className='bg-brand flex justify-center items-center p-10'>
+			<div
+				className='bg-brand flex justify-center items-center p-10'
+				style={{
+					background: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)) ,url(https://i.ibb.co/pZRJ2Wy/10-Mindaro.png) center/cover`,
+				}}
+			>
 				<h1 className='text-5xl text-white font-semibold'>
 					Let guests know what your place has to offer?
 				</h1>
