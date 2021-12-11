@@ -10,3 +10,12 @@ body {
 .box-shadow {
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
+/* scrollbar hide */
+.scroll-hide {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+}
+.scroll-hide::-webkit-scrollbar {
+	display: none; /* Safari and Chrome */
+}

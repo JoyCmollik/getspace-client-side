@@ -20,7 +20,7 @@ function App() {
 						path='dashboard/admin'
 						element={<AdminDashboardHome />}
 					/>
-					<Route path='host' element={<HostPlaceHome />} />
+					<Route path='host/*' element={<HostPlaceHome />} />
 				</Routes>
 			</Router>
 		</>
