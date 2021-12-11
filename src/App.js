@@ -15,7 +15,10 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route path='detail' element={<PlaceDetailHome />} />
 					<Route path='results' element={<SearchResultsHome />} />
-					<Route path='dashboard/user' element={<UserDashboard />} />
+					<Route
+						path='dashboard/user/*'
+						element={<UserDashboard />}
+					/>
 					<Route
 						path='dashboard/admin'
 						element={<AdminDashboardHome />}

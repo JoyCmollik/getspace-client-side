@@ -11,32 +11,32 @@ const DashboardNav = () => {
 							<div className='hidden sm:block sm:ml-6'>
 								<div className='flex space-x-4'>
 									<NavLink
-										to=''
+										to='/dashboard/user'
 										className='bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
 										aria-current='page'
 									>
 										Dashboard
 									</NavLink>
 									<NavLink
-										to=''
+										to='/dashboard/user/profile'
 										className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
 									>
 										Profile
 									</NavLink>
 									<NavLink
-										to=''
+										to='/dashboard/user/places'
 										className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
 									>
 										My Places
 									</NavLink>
 									<NavLink
-										to=''
+										to='/dashboard/user/bookings'
 										className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
 									>
 										Bookings
 									</NavLink>
 									<NavLink
-										to=''
+										to='/dashboard/user/mybookings'
 										className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
 									>
 										My Bookings
