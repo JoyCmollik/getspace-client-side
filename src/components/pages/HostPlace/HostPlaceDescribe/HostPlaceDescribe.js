@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 
 const HostPlaceDescribe = ({ hostData }) => {
@@ -39,16 +40,18 @@ const HostPlaceDescribe = ({ hostData }) => {
 				</div>
 				{/* host footer */}
 				<div className='border-t border-para py-4 flex justify-end'>
-					<button
-						className={`${
-							!placeDesc
-								? 'bg-gray-400 text-black'
-								: 'bg-brand text-white'
-						} font-semibold px-5 py-2 rounded-3xl`}
-						disabled={placeDesc ? false : true}
-					>
-						Next
-					</button>
+					<Link to='/host/info'>
+						<button
+							className={`${
+								!placeDesc
+									? 'bg-gray-400 text-black'
+									: 'bg-brand text-white'
+							} font-semibold px-5 py-2 rounded-3xl`}
+							disabled={placeDesc ? false : true}
+						>
+							Next
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>

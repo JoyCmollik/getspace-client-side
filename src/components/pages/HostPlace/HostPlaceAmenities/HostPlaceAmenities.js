@@ -5,6 +5,7 @@ import firepit from '../../../../images/icons/fire-pit.svg';
 import poolball from '../../../../images/icons/pool-ball.svg';
 import indoorFirebase from '../../../../images/icons/indoor-firebase.svg';
 import dine from '../../../../images/icons/dine.svg';
+import { Link } from 'react-router-dom';
 
 const standoutAmenitiesList = [
 	{
@@ -82,7 +83,10 @@ const HostPlaceAmenities = () => {
 										src={`https://cdn.lordicon.com/${amenity.iconCode}.json`}
 										trigger='hover'
 										colors='primary:#121331,secondary:#FF385C'
-										style={{ width: 54, height: 54 }}
+										style={{
+											width: 54,
+											height: 54,
+										}}
 									/>
 								) : (
 									<img
@@ -135,16 +139,18 @@ const HostPlaceAmenities = () => {
 				</div>
 				{/* host footer */}
 				<div className='border-t border-para py-4 flex justify-end'>
-					<button
-						className={`${
-							!amenityList.length
-								? 'bg-gray-400 text-black'
-								: 'bg-brand text-white'
-						} font-semibold px-5 py-2 rounded-3xl`}
-						disabled={amenityList.length ? false : true}
-					>
-						Next
-					</button>
+					<Link to='/host/images'>
+						<button
+							className={`${
+								!amenityList.length
+									? 'bg-gray-400 text-black'
+									: 'bg-brand text-white'
+							} font-semibold px-5 py-2 rounded-3xl`}
+							disabled={amenityList.length ? false : true}
+						>
+							Next
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>

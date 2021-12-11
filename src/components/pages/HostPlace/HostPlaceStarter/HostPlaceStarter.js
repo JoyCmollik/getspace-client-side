@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PrimaryBtn from '../../../shared/PrimaryBtn/PrimaryBtn';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 
@@ -18,7 +19,9 @@ const HostPlaceStarter = () => {
 					</p>
 				</div>
 				<div className='border-t border-para py-4 flex justify-end'>
-					<PrimaryBtn text="Let's go!" />
+					<Link to='/host/type'>
+						<PrimaryBtn text="Let's go!" />
+					</Link>
 				</div>
 			</div>
 		</div>

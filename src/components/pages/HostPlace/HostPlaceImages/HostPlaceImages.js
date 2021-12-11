@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 import HostPlaceImagesUploader from './HostPlaceImagesUploader';
 
@@ -27,16 +28,18 @@ const HostPlaceImages = () => {
 				</div>
 				{/* host footer */}
 				<div className='border-t border-para py-4 flex justify-end'>
-					<button
-						className={`${
-							!files.length
-								? 'bg-gray-400 text-black'
-								: 'bg-brand text-white'
-						} font-semibold px-5 py-2 rounded-3xl`}
-						disabled={files.length ? false : true}
-					>
-						Upload
-					</button>
+					<Link to='/host/title'>
+						<button
+							className={`${
+								!files.length
+									? 'bg-gray-400 text-black'
+									: 'bg-brand text-white'
+							} font-semibold px-5 py-2 rounded-3xl`}
+							disabled={files.length ? false : true}
+						>
+							Upload
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 import { BsPlus, BsDash } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const initialGuestCount = {
 	guests: 5,
@@ -14,13 +15,13 @@ const HostPlaceGuestCount = () => {
 
 	const handleGuestCount = (key, operation) => {
 		setGuestCount((prevGuestCount) => {
-			let prevCount = prevGuestCount[key];
+			let keyCount = prevGuestCount[key];
 
-			if (operation === 'increase') prevCount++;
-			else prevCount--;
+			if (operation === 'increase') keyCount++;
+			else keyCount--;
 
 			const newGuestCount = { ...prevGuestCount };
-			newGuestCount[key] = prevCount;
+			newGuestCount[key] = keyCount;
 
 			return newGuestCount;
 		});
@@ -85,9 +86,11 @@ const HostPlaceGuestCount = () => {
 				</div>
 				{/* host footer */}
 				<div className='border-t border-para py-4 flex justify-end'>
-					<button className='bg-brand text-white font-semibold px-5 py-2 rounded-3xl'>
-						Next
-					</button>
+					<Link to='/host/amenities'>
+						<button className='bg-brand text-white font-semibold px-5 py-2 rounded-3xl'>
+							Next
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>

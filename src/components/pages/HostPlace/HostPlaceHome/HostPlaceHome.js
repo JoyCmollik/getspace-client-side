@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link, Outlet, Route, Routes } from 'react-router-dom';
 import HostPlaceAmenities from '../HostPlaceAmenities/HostPlaceAmenities';
 import HostPlaceDescribe from '../HostPlaceDescribe/HostPlaceDescribe';
 import HostPlaceDescription from '../HostPlaceDescription/HostPlaceDescription';
 import HostPlaceGuestCount from '../HostPlaceGuestCount/HostPlaceGuestCount';
 import HostPlaceImages from '../HostPlaceImages/HostPlaceImages';
+import HostPlacePrice from '../HostPlacePrice/HostPlacePrice';
+import HostPlaceReviewPost from '../HostPlaceReviewPost/HostPlaceReviewPost';
 import HostPlaceSpaceInfo from '../HostPlaceSpaceInfo/HostPlaceSpaceInfo';
 import HostPlaceStarter from '../HostPlaceStarter/HostPlaceStarter';
 import HostPlaceTitle from '../HostPlaceTitle/HostPlaceTitle';
@@ -111,17 +114,27 @@ const hostData = [
 
 const HostPlaceHome = () => {
 	return (
-		<div>
-			<HostPlaceStarter />
-			<HostPlaceType hostData={hostData} />
-			<HostPlaceDescribe hostData={hostData} />
-			<HostPlaceSpaceInfo />
-			<HostPlaceGuestCount />
-			<HostPlaceAmenities />
-			<HostPlaceImages />
-			<HostPlaceTitle />
-			<HostPlaceDescription />
-		</div>
+		<>
+			<Routes>
+				<Route
+					path='type'
+					element={<HostPlaceType hostData={hostData} />}
+				/>
+				<Route
+					path='describe'
+					element={<HostPlaceDescribe hostData={hostData} />}
+				/>
+				<Route path='info' element={<HostPlaceSpaceInfo />} />
+				<Route path='count' element={<HostPlaceGuestCount />} />
+				<Route path='amenities' element={<HostPlaceAmenities />} />
+				<Route path='images' element={<HostPlaceImages />} />
+				<Route path='title' element={<HostPlaceTitle />} />
+				<Route path='description' element={<HostPlaceDescription />} />
+				<Route path='price' element={<HostPlacePrice />} />
+				<Route path='review' element={<HostPlaceReviewPost />} />
+				<Route index element={<HostPlaceStarter />} />
+			</Routes>
+		</>
 	);
 };
 
