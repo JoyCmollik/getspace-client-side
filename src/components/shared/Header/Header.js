@@ -3,7 +3,6 @@ import { FaUmbrellaBeach } from 'react-icons/fa';
 
 import { BiLogInCircle } from 'react-icons/bi';
 import { FaGlobe } from 'react-icons/fa';
-import Searchbar from './Searchbar/Searchbar';
 
 const Header = () => {
 	return (
@@ -84,7 +83,6 @@ const Header = () => {
 					</div>
 				</div>
 			</nav>
-			<Searchbar></Searchbar>
 		</div>
 	);
 };
