@@ -9,6 +9,9 @@ import {
 const UserDashboardHome = () => {
 	return (
 		<div>
+			<p className='text-4xl font-semibold text-gray-800 mt-8 mb-8 text-center'>
+				Welcome back! Host
+			</p>
 			<div className='grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-3 m-6'>
 				<div
 					className='relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out'
@@ -27,7 +30,7 @@ const UserDashboardHome = () => {
 								<p>Active Places</p>
 							</div>
 							<h3 className='text-white text-3xl mt-2 font-bold mb-6'>
-								0
+								12
 							</h3>
 						</div>
 					</div>
@@ -49,7 +52,7 @@ const UserDashboardHome = () => {
 								<p>Bookings Made</p>
 							</div>
 							<h3 className='text-white text-3xl mt-2 font-bold'>
-								0
+								65
 							</h3>
 							<h3 className='text-white text-lg mt-2 text-yellow-100 '>
 								4 not confirmed
@@ -85,6 +88,14 @@ const UserDashboardHome = () => {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div>
+				<img
+					className='mx-auto'
+					src='https://image.freepik.com/free-vector/dashboard-concept-illustration_114360-4351.jpg'
+					alt=''
+					srcset=''
+				/>
 			</div>
 		</div>
 	);

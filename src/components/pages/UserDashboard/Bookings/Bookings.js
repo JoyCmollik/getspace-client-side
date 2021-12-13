@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdCancel, MdOutlineDelete } from 'react-icons/md';
+import { MdOutlineDelete } from 'react-icons/md';
 
 const Bookings = () => {
 	return (
