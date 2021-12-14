@@ -8,7 +8,7 @@ const Header = () => {
 	return (
 		<div>
 			{/* navbar */}
-			<nav className='bg-dark shadow'>
+			<nav className='bg-dark dark:bg-white shadow'>
 				<div
 					className='
       container
