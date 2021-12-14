@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import HostPlaceAmenities from '../HostPlaceAmenities/HostPlaceAmenities';
 import HostPlaceDescribe from '../HostPlaceDescribe/HostPlaceDescribe';
 import HostPlaceDescription from '../HostPlaceDescription/HostPlaceDescription';
