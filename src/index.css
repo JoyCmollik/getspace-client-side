@@ -19,3 +19,35 @@ body {
 .scroll-hide::-webkit-scrollbar {
 	display: none; /* Safari and Chrome */
 }
+
+/* overriding style */
+.MuiPaper-root {
+	border-radius: 1.875rem !important;
+}
+
+/* button */
+.btn-primary {
+	background-image: linear-gradient(
+		to right,
+		#ff385c 0%,
+		#dd2476 51%,
+		#ff385c 100%
+	);
+}
+.btn-primary {
+	padding: 15px 45px;
+	text-align: center;
+	text-transform: uppercase;
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: 0 0 20px #eee;
+	border-radius: 10px;
+	display: block;
+}
+
+.btn-primary:hover {
+	background-position: right center; /* change the direction of the change here */
+	color: #fff;
+	text-decoration: none;
+}
