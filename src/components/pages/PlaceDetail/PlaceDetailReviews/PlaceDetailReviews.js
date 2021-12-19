@@ -4,7 +4,7 @@ import React from 'react';
 const PlaceDetailReviews = () => {
 	return (
 		<div className='space-y-4'>
-			<div className='grid grid-cols-2 gap-x-20 space-y-4'>
+			<div className='grid grid-cols-2 gap-x-20 gap-y-4'>
 				<div className='space-y-4'>
 					<div className='flex items-center space-x-4'>
 						<Avatar sx={{ width: 54, height: 54 }} />

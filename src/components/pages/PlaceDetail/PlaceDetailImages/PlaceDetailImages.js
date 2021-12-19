@@ -18,7 +18,7 @@ const PlaceDetailImages = () => {
 					delay: 2500,
 					disableOnInteraction: false,
 				}}
-				slidesPerView={2}
+				slidesPerView={4}
 				centeredSlides={true}
 				spaceBetween={0}
 			>

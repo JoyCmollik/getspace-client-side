@@ -1,8 +1,21 @@
 import React from 'react';
+import PlaceDetailReserveDateRange from './PlaceDetailReserveDateRange';
+import moment from 'moment';
 
-const PlaceDetailReserve = () => {
+const PlaceDetailReserve = ({ dateRange, setDateRange, handleClearDates }) => {
+	const [anchorEl, setAnchorEl] = React.useState(null);
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(() => null);
+		console.log('click');
+	};
+
 	return (
-		<div className='sticky top-0 py-8'>
+		<div className='sticky top-10 py-8'>
 			<div className='border box-shadow rounded-3xl p-8 space-y-4'>
 				{/* price & reviews */}
 				<div className='flex justify-between items-center'>
@@ -24,31 +37,50 @@ const PlaceDetailReserve = () => {
 				</div>
 				{/* date picker */}
 				<div>
-					<form className='grid grid-cols-2 border border-para rounded-lg'>
+					<div
+						className='grid grid-cols-2 border border-para rounded-lg cursor-pointer'
+						onClick={handleClick}
+					>
 						<div className='text-xs p-2 border-r border-para'>
 							<h4 className='font-medium'>CHECK-IN</h4>
-							<p className='text-sm'>
-								{new Date().toLocaleDateString()}
-							</p>
+							<div className='text-sm'>
+								{!dateRange[0] ? (
+									<p className='text-para'>Add date</p>
+								) : (
+									<p className='text-black'>
+										{moment(dateRange[0]).format('L')}
+									</p>
+								)}
+							</div>
 						</div>
 						<div className='text-xs p-2'>
 							<h4 className='font-medium'>CHECKOUT</h4>
-							<p className='text-sm'>
-								{new Date(
-									new Date().setDate(new Date().getDate() + 1)
-								).toLocaleDateString()}
-							</p>
+							<div className='text-sm'>
+								{!dateRange[1] ? (
+									<p className='text-para'>Add date</p>
+								) : (
+									<p className='text-black'>
+										{moment(dateRange[1]).format('L')}
+									</p>
+								)}
+							</div>
 						</div>
 						<div className='col-span-2 border-t border-para text-xs p-2'>
 							<h4 className='font-medium'>GUESTS</h4>
 							<p className='text-sm'>1 guest, 5 infants, 1 pet</p>
 						</div>
-					</form>
+					</div>
+					{/* date range pop over */}
+					<PlaceDetailReserveDateRange
+						anchorEl={anchorEl}
+						handleClose={handleClose}
+						dateRange={dateRange}
+						setDateRange={setDateRange}
+						handleClearDates={handleClearDates}
+					/>
 				</div>
 				{/* reserve */}
-				<button className='text-xl w-full p-2 bg-brand rounded-lg text-white'>
-					Reserve
-				</button>
+				<button className='btn-primary w-full'>Reserve</button>
 				{/* calculations */}
 				<ul className='space-y-2'>
 					<li className='flex justify-between items-center'>
