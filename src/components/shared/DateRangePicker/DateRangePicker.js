@@ -6,12 +6,12 @@ import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Box from '@mui/material/Box';
 
-const DateRangePicker = () => {
-	const [value, setValue] = React.useState([null, null]);
-
+const DateRangePicker = ({ dateRange, setDateRange }) => {
 	function getDaysAfter(date, amount) {
 		return date ? moment(date).add(amount, 'days') : undefined;
 	}
+
+	console.log(dateRange);
 
 	return (
 		<LocalizationProvider dateAdapter={DateAdapter}>
@@ -19,10 +19,10 @@ const DateRangePicker = () => {
 				<StaticDateRangePicker
 					disablePast
 					displayStaticWrapperAs='desktop'
-					value={value}
-					maxDate={getDaysAfter(value[0], 4)}
+					value={dateRange}
+					maxDate={getDaysAfter(dateRange[0], 4)}
 					onChange={(newValue) => {
-						setValue(newValue);
+						setDateRange(newValue);
 					}}
 					renderInput={(startProps, endProps) => (
 						<React.Fragment>

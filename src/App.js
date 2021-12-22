@@ -6,6 +6,7 @@ import SearchResultsHome from './components/pages/SearchResults/SearchResultsHom
 import AdminDashboardHome from './components/pages/AdminDashboard/AdminDashboardHome/AdminDashboardHome';
 import HostPlaceHome from './components/pages/HostPlace/HostPlaceHome/HostPlaceHome';
 import UserDashboard from './components/pages/UserDashboard/UserDashboard/UserDashboard';
+import AuthenticationHome from './components/pages/Authentication/AuthenticatonHome/AuthenticationHome';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route path='detail' element={<PlaceDetailHome />} />
 					<Route path='results' element={<SearchResultsHome />} />
+					<Route path='login' element={<AuthenticationHome />} />
 					<Route
 						path='dashboard/user/*'
 						element={<UserDashboard />}

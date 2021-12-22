@@ -30,7 +30,7 @@ const PlaceDetailLocationMap = () => {
 		});
 	});
 
-	return <div ref={mapContainer} style={{ height: 400 }} />;
+	return <div ref={mapContainer} style={{ height: 400, borderRadius: 20 }} />;
 };
 
 export default PlaceDetailLocationMap;

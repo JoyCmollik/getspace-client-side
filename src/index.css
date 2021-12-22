@@ -19,3 +19,30 @@ body {
 .scroll-hide::-webkit-scrollbar {
 	display: none; /* Safari and Chrome */
 }
+
+/* overriding style */
+.MuiPaper-root {
+	border-radius: 1.875rem !important;
+}
+
+/* button */
+.btn-primary {
+	background-image: linear-gradient(
+		to right,
+		#ff385c 0%,
+		#dd2476 51%,
+		#ff385c 100%
+	);
+}
+.btn-primary {
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: white;
+	border-radius: 8px;
+}
+
+.btn-primary:hover {
+	background-position: right center; /* change the direction of the change here */
+	color: #fff;
+	text-decoration: none;
+}
