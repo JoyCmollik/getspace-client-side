@@ -2,13 +2,12 @@ import React from 'react';
 import { FaUmbrellaBeach } from 'react-icons/fa';
 
 import { BiLogInCircle } from 'react-icons/bi';
-import { FaGlobe } from 'react-icons/fa';
 
 const Header = () => {
 	return (
 		<div>
 			{/* navbar */}
-			<nav className='bg-dark shadow'>
+			<nav className='bg-white  '>
 				<div
 					className='
       container
@@ -24,7 +23,7 @@ const Header = () => {
 								className='
             text-xl
             font-bold
-            text-white
+            text-dark
             flex items-center justify-between
            
           '
@@ -40,7 +39,7 @@ const Header = () => {
 							<p
 								className='
             my-1
-            text-white
+            text-dark
          
             md:mx-4 md:my-0
           '
@@ -50,7 +49,7 @@ const Header = () => {
 							<p
 								className='
             my-1
-            text-white
+            text-dark
             md:mx-4 md:my-0
           '
 							>
@@ -59,25 +58,29 @@ const Header = () => {
 							<p
 								className='
             my-1
-            text-white
+            text-dark
             md:mx-4 md:my-0
           '
 							>
 								Online Experiences
 							</p>
 						</div>
-						<span>
-							<button class='bg-light  text-black py-1 px-6 rounded-full my-0 mr-8 '>
-								Become a Host
-							</button>
-							<button className='text-white mr-8'>
-								<FaGlobe />
-							</button>
-						</span>
+					</div>
+					<div className='flex'>
+						<div>
+							<span>
+								<button class='bg-white hover:bg-black hover:text-white  text-black border border-black py-1 px-6 rounded-lg my-0 mr-4 '>
+									Become a Host
+								</button>
+							</span>
+						</div>
 						<div className='  md:block mr-5 '>
-							<button className='text-white flex items-center'>
+							<button
+								className='text-white bg-dark hover:bg-white hover:text-black
+							hover:border-black border flex items-center px-4 rounded-lg py-1'
+							>
 								<span>Sign in</span>
-								<BiLogInCircle className='text-white display-inline ml-4' />
+								<BiLogInCircle className=' hover:text-black display-inline ml-2' />
 							</button>
 						</div>
 					</div>

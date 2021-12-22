@@ -13,8 +13,9 @@ const Home = () => {
 	return (
 		<div>
 			<Header />
-			<Searchbar></Searchbar>
+
 			<Banner />
+			<Searchbar></Searchbar>
 			<CategoryCarousel />
 			{/* featured places */}
 			<FeaturedPlaces />
