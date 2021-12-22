@@ -25,6 +25,11 @@ body {
 	border-radius: 1.875rem !important;
 }
 
+/* translate */
+.translate-middle {
+	transform: translateX(50), translateY(-50);
+}
+
 /* button */
 .btn-primary {
 	background-image: linear-gradient(

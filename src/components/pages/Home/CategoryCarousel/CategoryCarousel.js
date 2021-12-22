@@ -10,7 +10,7 @@ const CategoryCarousel = () => {
 		<div>
 			<section className='container py-20 mx-auto'>
 				<SectionTitle title='Explore by' />
-				<div className='flex justify-between'>
+				<div className='grid grid-cols-2 lg:grid-cols-3 gap-5'>
 					<CategoryCarouselCard />
 					<CategoryCarouselCard />
 					<CategoryCarouselCard />

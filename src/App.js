@@ -16,7 +16,10 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route path='detail' element={<PlaceDetailHome />} />
 					<Route path='results' element={<SearchResultsHome />} />
-					<Route path='login' element={<AuthenticationHome />} />
+					<Route
+						path='authenticate/*'
+						element={<AuthenticationHome />}
+					/>
 					<Route
 						path='dashboard/user/*'
 						element={<UserDashboard />}
