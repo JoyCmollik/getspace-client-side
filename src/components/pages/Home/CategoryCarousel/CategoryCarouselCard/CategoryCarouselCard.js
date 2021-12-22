@@ -15,7 +15,7 @@ const CategoryCarouselCard = () => {
 			<div className=''>
 				<div
 					className='shadow-2xl bg-white p-10 rounded-2xl w-10/12 mx-auto 
-absolute -bottom-1/3'
+absolute -bottom-1/3 left-50'
 				>
 					<p className='text-sm text-gray-400 py-1'>
 						B<span className='p-1'>E</span>A
