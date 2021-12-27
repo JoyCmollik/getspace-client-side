@@ -2,8 +2,8 @@ import React from 'react';
 
 const AdminDashboardPlaceList = () => {
 	return (
-		<div>
-			<h4>admi9ndashboardplacelist.</h4>
+		<div className='bg-black h-screen text-white'>
+			<div> hello</div>
 		</div>
 	);
 };
