@@ -9,13 +9,13 @@ import AdminDashboardUsers from '../AdminDashboardUsers/AdminDashboardUsers';
 
 const AdminDashboardHome = () => {
 	return (
-		<div className='grid grid-cols-12 h-screen'>
-			<div className='col-span-3 bg-pink-400'>
+		<div className='grid grid-cols-12 h-screen text-white'>
+			<div className='col-span-3 bg-darklight'>
 				<AdminDashboardSidebar />
 			</div>
-			<div className='col-span-9 bg-blue-400'>
+			<div className='col-span-9 bg-black'>
 				<Routes>
-					<Route path='profile' element={<AdminDashboardProfile />} />
+					<Route index element={<AdminDashboardProfile />} />
 					<Route path='users' element={<AdminDashboardUsers />} />
 					<Route
 						path='admins'
