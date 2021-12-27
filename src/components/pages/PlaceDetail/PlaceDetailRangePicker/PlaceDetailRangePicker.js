@@ -2,12 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import DateRangePicker from '../../../shared/DateRangePicker/DateRangePicker';
 
-const PlaceDetailRangePicker = ({
-	dateRange,
-	setDateRange,
-	handleClearDates,
-	getDiffInNights,
-}) => {
+const PlaceDetailRangePicker = (props) => {
+	const { dateRange, setDateRange, handleClearDates, getDiffInNights } =
+		props;
+
 	return (
 		<div className='space-y-2'>
 			<h2 className='text-2xl font-semibold'>Select check-in date</h2>

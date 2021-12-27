@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { HiArrowRight, HiLockClosed, HiMail } from 'react-icons/hi';
 import { FaUserEdit } from 'react-icons/fa';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useFirebase from '../../../../hooks/useFirebase';
 
 const Register = () => {
@@ -12,9 +12,16 @@ const Register = () => {
 		handleSubmit,
 	} = useForm();
 	const { handleRegisterUser } = useFirebase();
-	const history = useHistory();
+	const navigate = useNavigate();
+	const location = useLocation();
 
-	const onSubmit = (data) => console.log(data);
+	// register data
+	const onSubmit = (data) => {
+		const name = data.first_name + ' ' + data.last_name;
+		const { email, password } = data;
+
+		handleRegisterUser(name, email, password, location, navigate);
+	};
 	return (
 		<div
 			className='h-screen text-white flex justify-center items-center'

@@ -4,13 +4,18 @@ import Popover from '@mui/material/Popover';
 import DateRangePicker from '../../../shared/DateRangePicker/DateRangePicker';
 
 const PlaceDetailReserveDateRange = (props) => {
-	const { anchorEl, handleClose, dateRange, setDateRange, handleClearDates } =
-		props;
-	const open = Boolean(anchorEl);
+	const {
+		anchorEl,
+		handleClose,
+		dateRange,
+		getDiffInNights,
+		setDateRange,
+		handleClearDates,
+	} = props;
 
 	return (
 		<Popover
-			open={open}
+			open={Boolean(anchorEl)}
 			onClose={handleClose}
 			anchorEl={anchorEl}
 			anchorOrigin={{
@@ -31,7 +36,15 @@ const PlaceDetailReserveDateRange = (props) => {
 							<p>Please select your travel dates</p>
 						) : (
 							<>
-								<h4 className='text-xl font-medium'>1 night</h4>
+								<h4 className='text-xl font-medium'>
+									{dateRange[1]
+										? getDiffInNights(
+												new Date(dateRange[0]?._d),
+												new Date(dateRange[1]?._d)
+										  )
+										: '1'}{' '}
+									nights
+								</h4>
 								<p className='text-para space-x-1'>
 									<span>
 										{moment(dateRange[0]).format('ll')}

@@ -7,11 +7,10 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Box from '@mui/material/Box';
 
 const DateRangePicker = ({ dateRange, setDateRange }) => {
-	function getDaysAfter(date, amount) {
-		return date ? moment(date).add(amount, 'days') : undefined;
-	}
-
-	console.log(dateRange);
+	// function getDaysAfter(date, amount) {
+	// 	maxDate={getDaysAfter(dateRange[0], 4)} // add in the StaticDateRangePicker
+	// 	return date ? moment(date).add(amount, 'days') : undefined;
+	// }
 
 	return (
 		<LocalizationProvider dateAdapter={DateAdapter}>
@@ -20,7 +19,6 @@ const DateRangePicker = ({ dateRange, setDateRange }) => {
 					disablePast
 					displayStaticWrapperAs='desktop'
 					value={dateRange}
-					maxDate={getDaysAfter(dateRange[0], 4)}
 					onChange={(newValue) => {
 						setDateRange(newValue);
 					}}

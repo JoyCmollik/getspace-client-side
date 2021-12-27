@@ -1,17 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PlaceDetailReserveDateRange from './PlaceDetailReserveDateRange';
 import moment from 'moment';
+import CustomPopper from '../../../shared/CustomPopper/CustomPopper';
+import PlaceDetailGuestCount from '../PlaceDetailGuestCount/PlaceDetailGuestCount';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 
-const PlaceDetailReserve = ({ dateRange, setDateRange, handleClearDates }) => {
-	const [anchorEl, setAnchorEl] = React.useState(null);
+const initialGuestCount = {
+	adults: 1,
+	children: 0,
+	infants: 1,
+	pets: 1,
+};
 
-	const handleClick = (event) => {
+const PlaceDetailReserve = ({
+	dateRange,
+	getDiffInNights,
+	setDateRange,
+	handleClearDates,
+}) => {
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [popperAnchor, setPopperAnchor] = useState(null);
+	const [guestCount, setGuestCount] = useState(initialGuestCount);
+
+	// control functions of reserve date selection popover
+	const handleReserveDatePopover = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
 	const handleClose = () => {
 		setAnchorEl(() => null);
+	};
+
+	// control functions of guest count
+	const handleReserveGuestPopper = (event) => {
 		console.log('click');
+		setPopperAnchor(popperAnchor ? null : event.currentTarget);
+	};
+
+	const handleGuestCount = (key, operation) => {
+		setGuestCount((prevGuestCount) => {
+			let keyCount = prevGuestCount[key];
+
+			if (operation === 'increase') keyCount++;
+			else keyCount--;
+
+			const newGuestCount = { ...prevGuestCount };
+			newGuestCount[key] = keyCount;
+
+			return newGuestCount;
+		});
 	};
 
 	return (
@@ -37,54 +74,108 @@ const PlaceDetailReserve = ({ dateRange, setDateRange, handleClearDates }) => {
 				</div>
 				{/* date picker */}
 				<div>
-					<div
-						className='grid grid-cols-2 border border-para rounded-lg cursor-pointer'
-						onClick={handleClick}
-					>
-						<div className='text-xs p-2 border-r border-para'>
-							<h4 className='font-medium'>CHECK-IN</h4>
-							<div className='text-sm'>
-								{!dateRange[0] ? (
-									<p className='text-para'>Add date</p>
+					<div className='grid grid-cols-2 border border-para rounded-lg cursor-pointer'>
+						{/* check-in check-out wrapper */}
+						<div
+							onClick={handleReserveDatePopover}
+							className='col-span-2 grid grid-cols-2'
+						>
+							<div className='text-xs p-2 border-r border-para'>
+								<h4 className='font-medium'>CHECK-IN</h4>
+								<div className='text-sm'>
+									{!dateRange[0] ? (
+										<p className='text-para'>Add date</p>
+									) : (
+										<p className='text-black'>
+											{moment(dateRange[0]).format('L')}
+										</p>
+									)}
+								</div>
+							</div>
+							<div className='text-xs p-2'>
+								<h4 className='font-medium'>CHECKOUT</h4>
+								<div className='text-sm'>
+									{!dateRange[1] ? (
+										<p className='text-para'>Add date</p>
+									) : (
+										<p className='text-black'>
+											{moment(dateRange[1]).format('L')}
+										</p>
+									)}
+								</div>
+							</div>
+						</div>
+						{/* date range pop over */}
+						<PlaceDetailReserveDateRange
+							anchorEl={anchorEl}
+							handleClose={handleClose}
+							getDiffInNights={getDiffInNights}
+							dateRange={dateRange}
+							setDateRange={setDateRange}
+							handleClearDates={handleClearDates}
+						/>
+						{/* guests count details wrapper */}
+						<div
+							onClick={handleReserveGuestPopper}
+							className='col-span-2 border-t border-para text-xs p-2 flex justify-between items-center'
+						>
+							{/* guest counts dynamic info */}
+							<div>
+								<h4 className='font-medium'>GUESTS</h4>
+								<p className='text-sm'>
+									{Boolean(guestCount.adults) && (
+										<span>
+											{guestCount.adults +
+												guestCount.children}{' '}
+											guests,
+										</span>
+									)}
+									{Boolean(guestCount.infants) && (
+										<span>
+											{guestCount.infants} infants,
+										</span>
+									)}
+									{Boolean(guestCount.pets) && (
+										<span>{guestCount.pets} pets</span>
+									)}
+								</p>
+							</div>
+							{/* icons */}
+							<div className='text-xl'>
+								{!popperAnchor ? (
+									<BsChevronDown />
 								) : (
-									<p className='text-black'>
-										{moment(dateRange[0]).format('L')}
-									</p>
+									<BsChevronUp />
 								)}
 							</div>
 						</div>
-						<div className='text-xs p-2'>
-							<h4 className='font-medium'>CHECKOUT</h4>
-							<div className='text-sm'>
-								{!dateRange[1] ? (
-									<p className='text-para'>Add date</p>
-								) : (
-									<p className='text-black'>
-										{moment(dateRange[1]).format('L')}
-									</p>
-								)}
-							</div>
-						</div>
-						<div className='col-span-2 border-t border-para text-xs p-2'>
-							<h4 className='font-medium'>GUESTS</h4>
-							<p className='text-sm'>1 guest, 5 infants, 1 pet</p>
-						</div>
+						{/* Popper for guest count selection */}
+						<CustomPopper
+							popperAnchor={popperAnchor}
+							setPopperAnchor={setPopperAnchor}
+						>
+							<PlaceDetailGuestCount
+								guestCount={guestCount}
+								handleGuestCount={handleGuestCount}
+							/>
+						</CustomPopper>
 					</div>
-					{/* date range pop over */}
-					<PlaceDetailReserveDateRange
-						anchorEl={anchorEl}
-						handleClose={handleClose}
-						dateRange={dateRange}
-						setDateRange={setDateRange}
-						handleClearDates={handleClearDates}
-					/>
 				</div>
 				{/* reserve */}
-				<button className='btn-primary w-full'>Reserve</button>
+				<button className='btn-primary py-4 text-xl w-full'>
+					Reserve
+				</button>
 				{/* calculations */}
 				<ul className='space-y-2'>
 					<li className='flex justify-between items-center'>
-						<span>$86 x 1 night</span>
+						<span>
+							$86 x{' '}
+							{getDiffInNights(
+								new Date(dateRange[0]?._d),
+								new Date(dateRange[1]?._d)
+							)}{' '}
+							nights
+						</span>
 						<span>$86</span>
 					</li>
 					<li className='flex justify-between items-center'>
