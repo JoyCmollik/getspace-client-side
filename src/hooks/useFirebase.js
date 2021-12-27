@@ -82,7 +82,7 @@ const useFirebase = () => {
 				const user = result.user;
 				// saveUser(user.email, user.displayName, 'PUT');
 
-				const redirectURI = location.state?.from?.pathname || '/home';
+				const redirectURI = location.state?.from?.pathname || '/';
 				navigate(redirectURI);
 			})
 			.catch((error) => {

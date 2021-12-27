@@ -33,7 +33,6 @@ const PlaceDetailReserve = ({
 
 	// control functions of guest count
 	const handleReserveGuestPopper = (event) => {
-		console.log('click');
 		setPopperAnchor(popperAnchor ? null : event.currentTarget);
 	};
 
@@ -42,7 +41,7 @@ const PlaceDetailReserve = ({
 			let keyCount = prevGuestCount[key];
 
 			if (operation === 'increase') keyCount++;
-			else keyCount--;
+			else if (operation === 'decrease') keyCount--;
 
 			const newGuestCount = { ...prevGuestCount };
 			newGuestCount[key] = keyCount;
