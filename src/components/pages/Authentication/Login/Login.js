@@ -12,7 +12,8 @@ const Login = () => {
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
-	const { handleLoginUser, handleSignOut, user } = useFirebase();
+	const { handleLoginUser, handleSignOut, user, handleGoogleSignIn } =
+		useFirebase();
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -125,6 +126,9 @@ const Login = () => {
 					<div className='w-full grid grid-cols-2 gap-4'>
 						{/* google */}
 						<button
+							onClick={() =>
+								handleGoogleSignIn(location, navigate)
+							}
 							className='w-full btn-primary'
 							style={{ padding: '1px' }}
 						>

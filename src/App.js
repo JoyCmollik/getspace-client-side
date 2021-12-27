@@ -25,7 +25,7 @@ function App() {
 						element={<UserDashboard />}
 					/>
 					<Route
-						path='dashboard/admin'
+						path='dashboard/admin/*'
 						element={<AdminDashboardHome />}
 					/>
 					<Route path='host/*' element={<HostPlaceHome />} />

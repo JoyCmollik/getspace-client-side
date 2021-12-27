@@ -2,7 +2,7 @@
 	background: url(https://images.pexels.com/photos/165505/pexels-photo-165505.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)
 		center/cover no-repeat fixed;
 
-	min-height: calc(100vh - 62px);
+	min-height: calc(90vh - 62px);
 	display: flex;
 	justify-content: center;
 	align-items: center;

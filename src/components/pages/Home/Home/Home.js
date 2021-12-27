@@ -13,7 +13,6 @@ const Home = () => {
 	return (
 		<div>
 			<Header />
-
 			<Banner />
 			<Searchbar></Searchbar>
 			<CategoryCarousel />
