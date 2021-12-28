@@ -3,7 +3,7 @@ import SectionTitle from '../../../shared/SectionTitle/SectionTitle';
 
 const TravelInspiration = () => {
 	return (
-		<section className='py-20 bg-blue-200'>
+		<section className='py-20 '>
 			<div className='container mx-auto'>
 				<SectionTitle title='Travel Inspiration' />
 
@@ -58,7 +58,7 @@ const TravelInspiration = () => {
 					</div>
 				</div>
 				<div className='text-center '>
-					<button className='px-4 border-2 rounded-3xl h-10 '>
+					<button className='px-4 border-2 rounded-3xl h-10 btn-primary font-bold'>
 						<a href='/#'>View More</a>
 					</button>
 				</div>
