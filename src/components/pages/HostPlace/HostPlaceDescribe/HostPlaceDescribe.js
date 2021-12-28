@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
+import { hostPlaceCategoryData } from '../../../utilities/hostData';
+import useHostProvider from '../../../../hooks/useHostProvider';
 
-const HostPlaceDescribe = ({ hostData }) => {
-	const [placeDesc, setPlaceDesc] = useState(null);
+const HostPlaceDescribe = () => {
+	const { placeDesc, handlePlaceDesc } = useHostProvider();
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
@@ -23,10 +25,10 @@ const HostPlaceDescribe = ({ hostData }) => {
 				<div className='overflow-y-auto py-5 scroll-hide'>
 					<div className='flex-grow flex flex-col space-y-4 justify-center items-center'>
 						{/* list */}
-						{hostData[0].describe.map((desc) => (
+						{hostPlaceCategoryData[0].describe.map((desc) => (
 							<button
 								key={desc.id}
-								onClick={() => setPlaceDesc(() => desc)}
+								onClick={() => handlePlaceDesc(desc)}
 								className={`p-4 flex flex-col items-start text-left w-8/12 rounded-lg border hover:border-para space-y-2  ${
 									placeDesc && placeDesc.id === desc.id
 										? 'border-para'

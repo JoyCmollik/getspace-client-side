@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import useHostProvider from '../../../../hooks/useHostProvider';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 
 const HostPlaceDescription = () => {
-	const [hostPlaceDescription, setHostPlaceDescription] = useState('');
+	const { placeDescription, setPlaceDescription } = useHostProvider();
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
@@ -28,10 +29,10 @@ const HostPlaceDescription = () => {
 							</h4>
 							<textarea
 								onChange={(e) =>
-									setHostPlaceDescription(e.target.value)
+									setPlaceDescription(e.target.value)
 								}
 								className={`w-full h-64 border rounded-lg outline-none p-4 text-lg scroll-hide ${
-									hostPlaceDescription.length > 500
+									placeDescription.length > 500
 										? 'text-red-900 border-red-400'
 										: 'border-para'
 								}`}
@@ -39,11 +40,11 @@ const HostPlaceDescription = () => {
 							/>
 							<p
 								className={`text-base text-para font-bold ${
-									hostPlaceDescription.length > 500 &&
+									placeDescription.length > 500 &&
 									'text-red-900'
 								}`}
 							>
-								{hostPlaceDescription.length}/500
+								{placeDescription.length}/500
 							</p>
 						</div>
 					</div>
@@ -53,14 +54,12 @@ const HostPlaceDescription = () => {
 					<Link to='/host/price'>
 						<button
 							className={`${
-								!hostPlaceDescription.length ||
-								hostPlaceDescription.length > 500
+								!placeDescription.length ||
+								placeDescription.length > 500
 									? 'bg-gray-400 text-black'
 									: 'bg-brand text-white'
 							} font-semibold px-5 py-2 rounded-3xl`}
-							disabled={
-								hostPlaceDescription.length ? false : true
-							}
+							disabled={placeDescription.length ? false : true}
 						>
 							Next
 						</button>

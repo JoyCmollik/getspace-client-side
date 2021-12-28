@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import useHostProvider from '../../../../hooks/useHostProvider';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 
 const HostPlaceTitle = () => {
-	const [hostPlaceTitle, setHostPlaceTitle] = useState('');
+	const { placeTitle, setPlaceTitle } = useHostProvider();
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
@@ -27,11 +28,9 @@ const HostPlaceTitle = () => {
 								Create your title
 							</h4>
 							<textarea
-								onChange={(e) =>
-									setHostPlaceTitle(e.target.value)
-								}
+								onChange={(e) => setPlaceTitle(e.target.value)}
 								className={`w-full h-40 border rounded-lg outline-none p-4 text-xl ${
-									hostPlaceTitle.length > 50
+									placeTitle.length > 50
 										? 'text-red-900 border-red-400'
 										: 'border-para'
 								}`}
@@ -39,10 +38,10 @@ const HostPlaceTitle = () => {
 							/>
 							<p
 								className={`text-base text-para font-bold ${
-									hostPlaceTitle.length > 50 && 'text-red-900'
+									placeTitle.length > 50 && 'text-red-900'
 								}`}
 							>
-								{hostPlaceTitle.length}/50
+								{placeTitle.length}/50
 							</p>
 						</div>
 					</div>
@@ -52,12 +51,11 @@ const HostPlaceTitle = () => {
 					<Link to='/host/description'>
 						<button
 							className={`${
-								!hostPlaceTitle.length ||
-								hostPlaceTitle.length > 50
+								!placeTitle.length || placeTitle.length > 50
 									? 'bg-gray-400 text-black'
 									: 'bg-brand text-white'
 							} font-semibold px-5 py-2 rounded-3xl`}
-							disabled={hostPlaceTitle.length ? false : true}
+							disabled={placeTitle.length ? false : true}
 						>
 							Next
 						</button>

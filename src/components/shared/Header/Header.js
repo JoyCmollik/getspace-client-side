@@ -90,7 +90,7 @@ const Header = () => {
 								</Link>
 							) : (
 								<div className='flex items-center space-x-4 px-4 py-1 border box-shadow rounded-lg'>
-									<p>{user?.displayName.split(' ', 1)[0]}</p>
+									<p>{user?.displayName?.split(' ', 1)[0]}</p>
 									<Avatar
 										src={user.photoURL}
 										style={{ width: 28, height: 28 }}

@@ -1,68 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
-import { FaSwimmingPool } from 'react-icons/fa';
-import firepit from '../../../../images/icons/fire-pit.svg';
-import poolball from '../../../../images/icons/pool-ball.svg';
-import indoorFirebase from '../../../../images/icons/indoor-firebase.svg';
-import dine from '../../../../images/icons/dine.svg';
 import { Link } from 'react-router-dom';
-
-const standoutAmenitiesList = [
-	{
-		id: 0,
-		text: 'Pool',
-		iconCode: 'jlpgasyu',
-	},
-	{ id: 1, text: 'Hot tub', iconCode: 'wfroncyf' },
-	{ id: 2, text: 'BBQ grill', iconCode: 'coqbeapw' },
-	{
-		id: 3,
-		text: 'Fire pit',
-		icon: firepit,
-	},
-	{ id: 4, text: 'Pool table', icon: poolball },
-	{ id: 5, text: 'Indoor fireplace', icon: indoorFirebase },
-	{ id: 6, text: 'Outdoor dining area', icon: dine },
-	{ id: 7, text: 'Exercise equipment', iconCode: 'ouvpilty' },
-];
-
-const guestFavoritesAmenitiesList = [
-	{ id: 8, text: 'Wifi', icon: <FaSwimmingPool /> },
-	{ id: 9, text: 'TV', icon: <FaSwimmingPool /> },
-	{ id: 10, text: 'Kitchen', icon: <FaSwimmingPool /> },
-	{ id: 11, text: 'Washer', icon: <FaSwimmingPool /> },
-	{ id: 12, text: 'Free parking on premises', icon: <FaSwimmingPool /> },
-	{ id: 13, text: 'Paid parking on premises', icon: <FaSwimmingPool /> },
-	{ id: 14, text: 'Air conditioning', icon: <FaSwimmingPool /> },
-	{ id: 15, text: 'Dedicated workspace', icon: <FaSwimmingPool /> },
-	{ id: 16, text: 'Outdoor shower', icon: <FaSwimmingPool /> },
-];
-
-const guestSafetyAmenitiesList = [
-	{ id: 17, text: 'Smoke alarm', icon: <FaSwimmingPool /> },
-	{ id: 18, text: 'First aid kit', icon: <FaSwimmingPool /> },
-	{ id: 19, text: 'Carbon monoxide alarm', icon: <FaSwimmingPool /> },
-	{ id: 20, text: 'Fire extinguisher', icon: <FaSwimmingPool /> },
-];
+import { hostPlaceAmenitiesData } from '../../../utilities/hostData';
+import useHostProvider from '../../../../hooks/useHostProvider';
 
 const HostPlaceAmenities = () => {
-	const [amenityList, setAmenityList] = useState([0, 1, 2, 3]);
+	const { placeAmenityList, handlePlaceAmenityList } = useHostProvider();
+	const isEmpty =
+		placeAmenityList.standoutAmenitiesList.length ||
+		placeAmenityList.guestFavoritesAmenitiesList.length ||
+		placeAmenityList.guestSafetyAmenitiesList.length;
 
-	const handleAmenityList = (id) => {
-		setAmenityList((prevAmenityList) => {
-			let newAmenityList = [];
-			if (prevAmenityList.includes(id)) {
-				newAmenityList = prevAmenityList.filter(
-					(existingId) => id !== existingId
-				);
-			} else {
-				newAmenityList = [...prevAmenityList, id];
-			}
-			return newAmenityList;
-		});
-	};
-
-	const AmenityContainer = ({ title, amenityArray }) => {
+	const AmenityContainer = ({ title, amenityArray, category }) => {
 		return (
 			<div className='space-y-4'>
 				<h4 className='text-2xl font-medium'>{title}</h4>
@@ -70,9 +19,12 @@ const HostPlaceAmenities = () => {
 					{amenityArray.map((amenity) => (
 						<button
 							key={amenity.id}
-							onClick={() => handleAmenityList(amenity.id)}
+							onClick={() =>
+								handlePlaceAmenityList(amenity.id, category)
+							}
 							className={`p-4 flex flex-col justify-center items-center space-y-2 text-center rounded-lg border hover:border-para h-40 ${
-								amenityList && amenityList.includes(amenity.id)
+								placeAmenityList[category] &&
+								placeAmenityList[category].includes(amenity.id)
 									? 'border-para'
 									: 'border-gray-200'
 							}`}
@@ -127,17 +79,26 @@ const HostPlaceAmenities = () => {
 							{/* Standout amenities */}
 							<AmenityContainer
 								title='Do you have any standout amenities?'
-								amenityArray={standoutAmenitiesList}
+								amenityArray={
+									hostPlaceAmenitiesData.standoutAmenitiesList
+								}
+								category='standoutAmenitiesList'
 							/>
 							{/* Guest favorite amenities list */}
 							<AmenityContainer
 								title='What about these guest favorites?'
-								amenityArray={guestFavoritesAmenitiesList}
+								amenityArray={
+									hostPlaceAmenitiesData.guestFavoritesAmenitiesList
+								}
+								category='guestFavoritesAmenitiesList'
 							/>
 							{/* Guest safety amenities list */}
 							<AmenityContainer
 								title='Have any of these safety items?'
-								amenityArray={guestSafetyAmenitiesList}
+								amenityArray={
+									hostPlaceAmenitiesData.guestSafetyAmenitiesList
+								}
+								category='guestSafetyAmenitiesList'
 							/>
 						</div>
 					</div>
@@ -147,11 +108,11 @@ const HostPlaceAmenities = () => {
 					<Link to='/host/images'>
 						<button
 							className={`${
-								!amenityList.length
+								!isEmpty
 									? 'bg-gray-400 text-black'
 									: 'bg-brand text-white'
 							} font-semibold px-5 py-2 rounded-3xl`}
-							disabled={amenityList.length ? false : true}
+							disabled={!isEmpty}
 						>
 							Next
 						</button>

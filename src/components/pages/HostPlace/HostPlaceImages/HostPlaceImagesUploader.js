@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-const HostPlaceImagesUploader = ({ files, setFiles }) => {
+const HostPlaceImagesUploader = ({ placeImageFiles, setPlaceImageFiles }) => {
 	const { getRootProps, getInputProps, fileRejections } = useDropzone({
 		maxFiles: 10,
 		accept: 'image/*',
 		onDrop: (acceptedFiles) => {
-			setFiles(
+			setPlaceImageFiles(
 				acceptedFiles.map((file) =>
 					Object.assign(file, {
 						preview: URL.createObjectURL(file),
@@ -23,14 +23,16 @@ const HostPlaceImagesUploader = ({ files, setFiles }) => {
 	useEffect(
 		() => () => {
 			// Make sure to revoke the data uris to avoid memory leaks
-			files.forEach((file) => URL.revokeObjectURL(file.preview));
+			placeImageFiles.forEach((file) =>
+				URL.revokeObjectURL(file.preview)
+			);
 		},
-		[files]
+		[placeImageFiles]
 	);
 
 	return (
 		<section className='p-4'>
-			{!files.length ? (
+			{!placeImageFiles.length ? (
 				<div
 					className='flex flex-col justify-center items-center rounded-lg border border-dashed border-para'
 					style={{ minHeight: '40vh' }}
@@ -65,14 +67,14 @@ const HostPlaceImagesUploader = ({ files, setFiles }) => {
 					<div className='flex justify-between items-center py-4'>
 						<h4 className='text-xl'>Want to upload again?</h4>
 						<button
-							onClick={() => setFiles([])}
+							onClick={() => setPlaceImageFiles([])}
 							className='px-4 py-1 bg-red-100 text-red-400 rounded-lg'
 						>
 							Clear All
 						</button>
 					</div>
 					<div className='grid grid-cols-2 gap-4'>
-						{files.map((file) => (
+						{placeImageFiles.map((file) => (
 							<div
 								className='h-64 overflow-hidden rounded-lg'
 								key={file.name}

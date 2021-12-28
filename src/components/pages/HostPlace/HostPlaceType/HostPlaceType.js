@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
+import { hostPlaceCategoryData } from '../../../utilities/hostData';
+import useHostProvider from '../../../../hooks/useHostProvider';
 
-const HostPlaceType = ({ hostData }) => {
-	const [placeType, setPlaceType] = useState(null);
+const HostPlaceType = () => {
+	const { placeType, handlePlaceType } = useHostProvider();
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
@@ -21,10 +23,12 @@ const HostPlaceType = ({ hostData }) => {
 				<HostPlaceHeader />
 				{/* content */}
 				<div className='flex-grow flex flex-col space-y-4 justify-center items-center'>
-					{hostData.map(({ id, type, image }) => (
+					{hostPlaceCategoryData.map(({ id, type, image }) => (
 						<button
 							key={id}
-							onClick={() => setPlaceType(() => hostData[id])}
+							onClick={() =>
+								handlePlaceType(hostPlaceCategoryData[id])
+							}
 							className={`p-4 flex justify-between items-center w-8/12 rounded-lg border hover:border-para ${
 								placeType && placeType.id === id
 									? 'border-para'

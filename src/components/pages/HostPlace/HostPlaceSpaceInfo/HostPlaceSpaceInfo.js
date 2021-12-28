@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
-
-const placeSpaceInfoList = [
-	{ id: 0, text: 'An entire place' },
-	{ id: 1, text: 'A private room' },
-	{ id: 2, text: 'A shared room' },
-];
+import { hostPlaceSpaceInfoData } from '../../../utilities/hostData';
+import useHostProvider from '../../../../hooks/useHostProvider';
 
 const HostPlaceSpaceInfo = () => {
-	const [placeSpaceInfo, setPlaceSpaceInfo] = useState(null);
+	const { placeSpaceInfo, handlePlaceSpaceInfo } = useHostProvider();
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
@@ -28,14 +24,10 @@ const HostPlaceSpaceInfo = () => {
 				{/* content */}
 				<div className='flex-grow flex flex-col space-y-4 justify-center items-center'>
 					{/* list */}
-					{placeSpaceInfoList.map(({ id, text }) => (
+					{hostPlaceSpaceInfoData.map(({ id, text }) => (
 						<button
 							key={id}
-							onClick={() =>
-								setPlaceSpaceInfo(() => {
-									return { id, text };
-								})
-							}
+							onClick={() => handlePlaceSpaceInfo({ id, text })}
 							className={`p-4 flex flex-col items-start text-left w-8/12 rounded-lg border hover:border-para ${
 								placeSpaceInfo && placeSpaceInfo.id === id
 									? 'border-para'
