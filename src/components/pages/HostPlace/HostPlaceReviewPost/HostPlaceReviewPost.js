@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from '@mui/material';
+import { Avatar, CircularProgress } from '@mui/material';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 import { useNavigate } from 'react-router-dom';
 import useHostProvider from '../../../../hooks/useHostProvider';
@@ -7,15 +7,18 @@ import useFirebase from '../../../../hooks/useFirebase';
 import { getAmenities } from '../../../utilities/hostData';
 
 const HostPlaceReviewPost = () => {
-	const { hostPlace, placeImageFiles, handlePlaceStore } = useHostProvider();
+	const { isPlaceUploading, hostPlace, placeImageFiles, handlePlaceStore } =
+		useHostProvider();
 	const { user } = useFirebase();
 	const amenitiesList = getAmenities(hostPlace.placeAmenityList);
 	const navigate = useNavigate();
 
 	// making the first image viewable
-	Object.assign(placeImageFiles[0], {
-		preview: URL.createObjectURL(placeImageFiles[0]),
-	});
+	if (placeImageFiles.length) {
+		Object.assign(placeImageFiles[0], {
+			preview: URL.createObjectURL(placeImageFiles[0]),
+		});
+	}
 	return (
 		<div className='h-screen grid grid-cols-2'>
 			{/* first column */}
@@ -38,7 +41,10 @@ const HostPlaceReviewPost = () => {
 					<article className='flex flex-col space-y-4'>
 						<img
 							className='object-cover w-full h-64 rounded-t-lg'
-							src={placeImageFiles[0].preview}
+							src={
+								placeImageFiles.length &&
+								placeImageFiles[0].preview
+							}
 							alt='pics'
 						/>
 						<div className='p-4 space-y-4'>
@@ -121,8 +127,9 @@ const HostPlaceReviewPost = () => {
 					<button
 						onClick={() => handlePlaceStore(navigate)}
 						className='bg-brand text-white font-semibold px-5 py-2 rounded-3xl'
+						disabled={isPlaceUploading}
 					>
-						Save your listing
+						{isPlaceUploading ? 'Loading...' : 'Save your listing'}
 					</button>
 				</div>
 			</div>
