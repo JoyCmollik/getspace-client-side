@@ -5,55 +5,52 @@ import firepit from '../../../../images/icons/fire-pit.svg';
 import poolball from '../../../../images/icons/pool-ball.svg';
 import indoorFirebase from '../../../../images/icons/indoor-firebase.svg';
 import dine from '../../../../images/icons/dine.svg';
+import { getAmenities } from '../../../utilities/hostData';
 
-const standoutAmenitiesList = [
-	{
-		id: 0,
-		text: 'Pool',
-		iconCode: 'jlpgasyu',
-	},
-	{ id: 1, text: 'Hot tub', iconCode: 'wfroncyf' },
-	{ id: 2, text: 'BBQ grill', iconCode: 'coqbeapw' },
-	{
-		id: 3,
-		text: 'Fire pit',
-		icon: firepit,
-	},
-	{ id: 4, text: 'Pool table', icon: poolball },
-	{ id: 5, text: 'Indoor fireplace', icon: indoorFirebase },
-	{ id: 6, text: 'Outdoor dining area', icon: dine },
-	{ id: 7, text: 'Exercise equipment', iconCode: 'ouvpilty' },
-];
+const PlaceDetailInformation = ({ place }) => {
+	const {
+		placeTitle,
+		placeGuestCount,
+		placeDesc,
+		placeSpaceInfo,
+		host,
+		placeDescription,
+		placeAmenityList,
+	} = place;
+	const amenitiesList = getAmenities(placeAmenityList);
 
-const PlaceDetailInformation = () => {
 	return (
 		<div className='space-y-8 py-8'>
 			{/* title */}
 			<div className='flex justify-between items-center'>
 				<div className='space-y-2'>
 					<h2 className='text-2xl font-semibold'>
-						Treehouse hosted by Daleep
+						{placeTitle} Hosted By {host.host_name}
 					</h2>
 					<p className='flex items-center space-x-1'>
-						<span>15 guests</span>
+						<span>{placeGuestCount.guests} guests</span>
 						<span
 							className='rounded-full bg-para'
 							style={{ padding: 1 }}
 						/>
-						<span>Studio</span>
+						<span>{placeSpaceInfo.text}</span>
 						<span
 							className='rounded-full bg-para'
 							style={{ padding: 1 }}
 						/>
-						<span>1 bed</span>
+						<span>{placeGuestCount.beds} bed</span>
 						<span
 							className='rounded-full bg-para'
 							style={{ padding: 1 }}
 						/>
-						<span>1 bath</span>
+						<span>{placeGuestCount.bathrooms} bath</span>
 					</p>
 				</div>
-				<Avatar />
+				<Avatar
+					sx={{ width: 45, height: 45 }}
+					src={host.host_avatar}
+					alt={host.host_name}
+				/>
 			</div>
 			<hr />
 			{/* place information */}
@@ -67,10 +64,10 @@ const PlaceDetailInformation = () => {
 						style={{ width: 40, height: 40 }}
 					/>
 					<div>
-						<h4 className='text-lg font-medium'>Entire Home</h4>
-						<p className='text-para text-base'>
-							You'll have the treehouse to yourself.
-						</p>
+						<h4 className='text-lg font-medium'>
+							{placeDesc.title}
+						</h4>
+						<p className='text-para text-base'>{placeDesc.desc}</p>
 					</div>
 				</div>
 				<div className='flex items-start space-x-4'>
@@ -100,7 +97,7 @@ const PlaceDetailInformation = () => {
 					<div>
 						<h4 className='text-lg font-medium'>Great Location</h4>
 						<p className='text-para text-base'>
-							100% of recent guests gave the location a 5-star
+							Most of recent guests gave the location a 5-star
 							rating.
 						</p>
 					</div>
@@ -126,28 +123,17 @@ const PlaceDetailInformation = () => {
 			</div>
 			<hr />
 			{/* description */}
-			<p className='text-para'>
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-				Molestias, sed! Voluptas dolorem, nisi inventore vero harum
-				autem pariatur voluptatibus quisquam asperiores ipsam, eius,
-				aliquam quod quibusdam molestiae ullam aut iste. Sapiente a
-				eaque illo ratione temporibus in optio quos et inventore dolorum
-				neque suscipit, vero tempore modi facilis labore quia aspernatur
-				ipsam rem ipsum? Illo quasi libero quae minus earum, asperiores
-				accusantium tenetur, dignissimos beatae quisquam sit. Possimus
-				cumque doloremque culpa ad fuga? Maxime nam distinctio placeat
-				doloremque iusto dolores culpa tenetur pariatur non eius rerum
-				earum est exercitationem perferendis sunt omnis amet,
-				consectetur, illum ipsum! Aliquam hic voluptatem dicta?
-			</p>
+			<p className='text-para'>{placeDescription}</p>
 			<hr />
 			{/* bed information */}
 			<div className='space-y-4'>
 				<h2 className='text-2xl font-semibold'>Where you'll sleep</h2>
 				<div className='w-52 border rounded-lg p-4 space-y-2'>
 					<BiBed style={{ fontSize: 25 }} />
-					<h4 className='text-lg font-medium'>Bedroom</h4>
-					<p>1 double bed</p>
+					<h4 className='text-lg font-medium'>
+						{placeGuestCount.bedrooms} Bedroom
+					</h4>
+					<p>Total {placeGuestCount.beds} bed available</p>
 				</div>
 			</div>
 			<hr />
@@ -157,7 +143,7 @@ const PlaceDetailInformation = () => {
 					What this place offers
 				</h2>
 				<div className='grid grid-cols-2 gap-4 xl:w-4/5'>
-					{standoutAmenitiesList.map((amenity) => (
+					{amenitiesList.map((amenity) => (
 						<div
 							key={amenity.id}
 							className='flex items-center space-x-4'

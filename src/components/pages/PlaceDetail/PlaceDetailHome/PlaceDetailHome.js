@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../../shared/Header/Header';
 import Footer from '../../../shared/Footer/Footer';
 import PlaceDetailImages from '../PlaceDetailImages/PlaceDetailImages';
@@ -10,11 +10,24 @@ import PlaceDetailReviewsContainer from '../PlaceDetailReviews/PlaceDetailReview
 import PlaceDetailHostInfo from '../PlaceDetailHostInfo/PlaceDetailHostInfo';
 import PlaceDetailThingsToKnow from '../PlaceDetailThingsToKnow/PlaceDetailThingsToKnow';
 import { useParams } from 'react-router-dom';
+import useAxios from '../../../../hooks/useAxios';
 
 const PlaceDetailHome = () => {
-	const { id } = useParams();
-	console.log(id);
+	const { _id } = useParams();
+	const [place, setPlace] = useState(null);
 	const [dateRange, setDateRange] = useState([null, null]);
+	const { client } = useAxios();
+
+	useEffect(() => {
+		client
+			.get(`place/${_id}`)
+			.then((response) => {
+				setPlace(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, []);
 
 	const handleClearDates = () => {
 		setDateRange([null, null]);
@@ -30,12 +43,14 @@ const PlaceDetailHome = () => {
 	return (
 		<div className='min-h-screen flex-col justify-between'>
 			<Header />
-			<PlaceDetailImages />
+			{place && (
+				<PlaceDetailImages placeImageList={place.placeImageList} />
+			)}
 			<div className='container mx-auto space-y-8 pb-10'>
 				{/* place detail and reserve */}
 				<div className='grid grid-cols-12 gap-x-28 relative'>
 					<div className='col-span-8 space-y-8'>
-						<PlaceDetailInformation />
+						{place && <PlaceDetailInformation place={place} />}
 						<hr />
 						<PlaceDetailRangePicker
 							dateRange={dateRange}
@@ -59,7 +74,7 @@ const PlaceDetailHome = () => {
 				<PlaceDetailLocationMap />
 				<hr />
 				<div className='grid grid-cols-2 gap-x-20'>
-					<PlaceDetailHostInfo />
+					{place && <PlaceDetailHostInfo host={place.host} />}
 					<PlaceDetailThingsToKnow />
 				</div>
 			</div>

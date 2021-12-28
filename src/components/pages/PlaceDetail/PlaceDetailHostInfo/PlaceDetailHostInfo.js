@@ -2,14 +2,21 @@ import React from 'react';
 import { Avatar } from '@mui/material';
 import { MdVerifiedUser } from 'react-icons/md';
 
-const PlaceDetailHostInfo = () => {
+const PlaceDetailHostInfo = ({ host }) => {
+	const { host_name, host_avatar } = host;
 	return (
 		<div className='space-y-4 border-r'>
 			{/* host name */}
 			<div className='flex items-center space-x-4'>
-				<Avatar sx={{ width: 54, height: 54 }} />
+				<Avatar
+					sx={{ width: 54, height: 54 }}
+					src={host_avatar}
+					alt={host_name}
+				/>
 				<div className=''>
-					<h2 className='text-2xl font-medium'>Hosted by Daleep</h2>
+					<h2 className='text-2xl font-medium'>
+						Hosted by {host_name}
+					</h2>
 					<p className='text-para'>Joined in March 2018</p>
 				</div>
 			</div>
@@ -37,7 +44,7 @@ const PlaceDetailHostInfo = () => {
 			</p>
 			{/* other information */}
 			<div className='space-y-4'>
-				<p>Language: Hindi</p>
+				<p>Language: English</p>
 				<p>Response rate: 100%</p>
 				<p>Response time: within an hour</p>
 				<button className='px-5 py-2 border border-black rounded-lg'>
