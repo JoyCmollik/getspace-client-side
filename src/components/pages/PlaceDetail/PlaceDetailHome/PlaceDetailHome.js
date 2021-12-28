@@ -49,7 +49,7 @@ const PlaceDetailHome = () => {
 			<div className='container mx-auto space-y-8 pb-10'>
 				{/* place detail and reserve */}
 				<div className='grid grid-cols-12 gap-x-28 relative'>
-					<div className='col-span-8 space-y-8'>
+					<div className='col-span-12 lg:col-span-7 xl:col-span-8 space-y-8'>
 						{place && <PlaceDetailInformation place={place} />}
 						<hr />
 						<PlaceDetailRangePicker
@@ -59,13 +59,16 @@ const PlaceDetailHome = () => {
 							getDiffInNights={getDiffInNights}
 						/>
 					</div>
-					<div className='col-span-4'>
-						<PlaceDetailReserve
-							dateRange={dateRange}
-							setDateRange={setDateRange}
-							handleClearDates={handleClearDates}
-							getDiffInNights={getDiffInNights}
-						/>
+					<div className='col-span-12 lg:col-span-5 xl:col-span-4'>
+						{place && (
+							<PlaceDetailReserve
+								dateRange={dateRange}
+								setDateRange={setDateRange}
+								handleClearDates={handleClearDates}
+								getDiffInNights={getDiffInNights}
+								placePrice={place.placePrice}
+							/>
+						)}
 					</div>
 				</div>
 				<hr />

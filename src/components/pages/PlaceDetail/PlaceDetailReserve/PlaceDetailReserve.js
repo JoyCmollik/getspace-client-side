@@ -17,6 +17,7 @@ const PlaceDetailReserve = ({
 	getDiffInNights,
 	setDateRange,
 	handleClearDates,
+	placePrice,
 }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [popperAnchor, setPopperAnchor] = useState(null);
@@ -50,14 +51,27 @@ const PlaceDetailReserve = ({
 		});
 	};
 
+	const nights = dateRange[1]
+		? getDiffInNights(
+				new Date(dateRange[0]?._d),
+				new Date(dateRange[1]?._d)
+		  )
+		: 1;
+	const nightStayCost = nights * Number(placePrice.price);
+	const serviceFee = nights * Number(placePrice.price) * 0.05;
+	const taxFees = nights * Number(placePrice.price) * 0.1;
+	const grandTotal = nightStayCost + serviceFee + taxFees;
+
 	return (
 		<div className='sticky top-10 py-8'>
 			<div className='border box-shadow rounded-3xl p-8 space-y-4'>
 				{/* price & reviews */}
 				<div className='flex justify-between items-center'>
 					<h4 className='text-lg'>
-						<span className='text-2xl font-medium'>$86</span> /
-						night
+						<span className='text-2xl font-medium'>
+							${placePrice.price}
+						</span>{' '}
+						/ night
 					</h4>
 					<div className='flex items-center space-x-1 text-sm'>
 						<lord-icon
@@ -165,32 +179,29 @@ const PlaceDetailReserve = ({
 					Reserve
 				</button>
 				{/* calculations */}
-				<ul className='space-y-2'>
-					<li className='flex justify-between items-center'>
-						<span>
-							$86 x{' '}
-							{getDiffInNights(
-								new Date(dateRange[0]?._d),
-								new Date(dateRange[1]?._d)
-							)}{' '}
-							nights
-						</span>
-						<span>$86</span>
-					</li>
-					<li className='flex justify-between items-center'>
-						<span>Service fee</span>
-						<span>$12</span>
-					</li>
-					<li className='flex justify-between items-center'>
-						<span>Occupancy taxes and fees</span>
-						<span>$10</span>
-					</li>
-					<hr />
-					<li className='flex justify-between items-center font-medium'>
-						<span>Total</span>
-						<span>$108</span>
-					</li>
-				</ul>
+				{dateRange[1] && (
+					<ul className='space-y-2'>
+						<li className='flex justify-between items-center'>
+							<span>
+								${placePrice.price} x {nights} nights
+							</span>
+							<span>${nightStayCost}</span>
+						</li>
+						<li className='flex justify-between items-center'>
+							<span>Service fee</span>
+							<span>${serviceFee.toPrecision(4)}</span>
+						</li>
+						<li className='flex justify-between items-center'>
+							<span>Occupancy taxes and fees</span>
+							<span>${taxFees.toPrecision(4)}</span>
+						</li>
+						<hr />
+						<li className='flex justify-between items-center font-medium'>
+							<span>Total</span>
+							<span>${grandTotal.toPrecision(4)}</span>
+						</li>
+					</ul>
+				)}
 			</div>
 		</div>
 	);
