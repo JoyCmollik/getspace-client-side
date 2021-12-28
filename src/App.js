@@ -7,6 +7,7 @@ import AdminDashboardHome from './components/pages/AdminDashboard/AdminDashboard
 import HostPlaceHome from './components/pages/HostPlace/HostPlaceHome/HostPlaceHome';
 import UserDashboard from './components/pages/UserDashboard/UserDashboard/UserDashboard';
 import AuthenticationHome from './components/pages/Authentication/AuthenticatonHome/AuthenticationHome';
+import PlaceListHome from './components/pages/PlaceList/PlaceListHome/PlaceListHome';
 
 function App() {
 	return (
@@ -14,8 +15,9 @@ function App() {
 			<Router>
 				<Routes>
 					<Route path='/' element={<Home />} />
-					<Route path='detail' element={<PlaceDetailHome />} />
 					<Route path='results' element={<SearchResultsHome />} />
+					<Route path='places' element={<PlaceListHome />} />
+					<Route path='place/:_id' element={<PlaceDetailHome />} />
 					<Route
 						path='authenticate/*'
 						element={<AuthenticationHome />}
