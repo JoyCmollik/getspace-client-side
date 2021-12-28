@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import useAxios from '../hooks/useAxios';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const initialGuestCount = {
 	guests: 5,
@@ -31,8 +35,10 @@ const useHostPlace = () => {
 	const [placeDescription, setPlaceDescription] = useState('');
 	const [placePrice, setPlacePrice] = useState(initialPrice);
 	const [hostPlace, setHostPlace] = useState({});
-
-	console.log(placeImageFiles);
+	const [isImgUploadingDone, setIsImgUploadingDone] = useState(false);
+	const [isPlaceUploading, setIsPlaceUploading] = useState(false);
+	const { client } = useAxios();
+	const navigate = useNavigate();
 
 	const handlePlaceType = (selectedPlaceType) => {
 		if (selectedPlaceType.id === placeType?.id) return;
@@ -98,6 +104,20 @@ const useHostPlace = () => {
 		});
 	};
 
+	const handlePlaceReset = () => {
+		setPlaceType(null);
+		setPlaceDesc(null);
+		setPlaceSpaceInfo(null);
+		setPlaceGuestCount(initialGuestCount);
+		setPlaceAmenityList(initialAmenityList);
+		setPlaceImageFiles([]);
+		setPlaceImageList([]);
+		setPlaceTitle('');
+		setPlaceDescription('');
+		setPlacePrice(initialPrice);
+		setHostPlace({});
+	};
+
 	const handlePlaceObject = (navigate) => {
 		const newHostPlace = {
 			placeType,
@@ -110,11 +130,70 @@ const useHostPlace = () => {
 			placePrice,
 		};
 		setHostPlace(newHostPlace);
-		console.log(newHostPlace);
 		navigate('/host/review');
 	};
 
-	const handlePlaceStore = () => {};
+	const handlePlaceStore = () => {
+		setIsPlaceUploading(true);
+		let length = 0;
+
+		placeImageFiles.forEach((img) => {
+			let body = new FormData();
+			body.set('key', 'd845bc3ffcdbf53e0ef9ccaa71aab9ee');
+			body.append('image', img);
+			axios({
+				method: 'post',
+				url: 'https://api.imgbb.com/1/upload',
+				data: body,
+			})
+				.then((resp) => {
+					setPlaceImageList((prevList) => {
+						if (prevList.length) {
+							return [...prevList, resp.data.data.display_url];
+						}
+						return [resp.data.data.display_url];
+					});
+					length++;
+				})
+				.catch((error) => {
+					console.log(error);
+				})
+				.finally(() => {
+					if (placeImageFiles.length === length) {
+						setIsImgUploadingDone(true);
+					}
+				});
+		});
+	};
+
+	const handlePlaceObjectStore = () => {
+		console.log('called place object store');
+		const newHostPlace = {
+			...hostPlace,
+			placeImageList,
+		};
+
+		client
+			.post('/place', newHostPlace)
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			})
+			.finally(() => {
+				setIsImgUploadingDone(false);
+				setIsPlaceUploading(false);
+				navigate('/');
+				handlePlaceReset();
+			});
+	};
+
+	useEffect(() => {
+		if (isImgUploadingDone) {
+			handlePlaceObjectStore();
+		}
+	}, [isImgUploadingDone]);
 
 	return {
 		placeType,
@@ -139,6 +218,7 @@ const useHostPlace = () => {
 		handlePlaceObject,
 		hostPlace,
 		handlePlaceStore,
+		isPlaceUploading,
 	};
 };
 
