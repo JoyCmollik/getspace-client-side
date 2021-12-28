@@ -49,8 +49,38 @@ const hostPlaceCategoryData = [
 		describe: [
 			{
 				id: 0,
-				title: 'Rental unit',
-				desc: 'A rented place within a multi-unit-residential building or complex.',
+				title: 'Residential Home',
+				desc: 'A home that may stand-alone or have shared walls.',
+			},
+			{
+				id: 1,
+				title: 'Cabin',
+				desc: 'A house made with natural materials like wood and built in a natural setting.',
+			},
+			{
+				id: 2,
+				title: 'Villa',
+				desc: 'A luxury home that may have indoor outdoor spaces, gardens and pools.',
+			},
+			{
+				id: 3,
+				title: 'Townhouse',
+				desc: 'A row and terrace house that may have shared walls and indoor spaces.',
+			},
+			{
+				id: 4,
+				title: 'Cottage',
+				desc: 'A cozy house built in a rural area or near a lake or beach.',
+			},
+			{
+				id: 5,
+				title: 'Bungalow',
+				desc: 'A single-level house with a wide front porch and a sloping roof.',
+			},
+			{
+				id: 6,
+				title: 'Earth House',
+				desc: 'A home built in the ground or made from materials like rammed earth.',
 			},
 		],
 	},
@@ -61,8 +91,23 @@ const hostPlaceCategoryData = [
 		describe: [
 			{
 				id: 0,
-				title: 'Rental unit',
-				desc: 'A rented place within a multi-unit-residential building or complex.',
+				title: 'Guesthouse',
+				desc: 'A carriage house or coach house that shares land with a main building.',
+			},
+			{
+				id: 1,
+				title: 'Guest suite',
+				desc: 'A space with a private entrance inside of or attached to a larger structure.',
+			},
+			{
+				id: 2,
+				title: 'Firm stay',
+				desc: 'A rural stay where guests may spend time with animals, hiking, or crafting.',
+			},
+			{
+				id: 3,
+				title: 'Vacation home',
+				desc: 'A furnished rental property that includes a kitchen and bathroom and may offer some guest services, like a reception desk.',
 			},
 		],
 	},
@@ -73,8 +118,38 @@ const hostPlaceCategoryData = [
 		describe: [
 			{
 				id: 0,
-				title: 'Rental unit',
-				desc: 'A rented place within a multi-unit-residential building or complex.',
+				title: 'Barn',
+				desc: 'A converted space in a building used for grain, livestock, or farming.',
+			},
+			{
+				id: 1,
+				title: 'Boat',
+				desc: 'A boat, sailboat, or yacht moored during guest visits. Not a houseboat.',
+			},
+			{
+				id: 2,
+				title: 'Bus',
+				desc: 'A converted multi-passenger vehicle with a creativety remagined interior.',
+			},
+			{
+				id: 3,
+				title: 'Camper/RV',
+				desc: 'A motor home or camping trailer thats half-home and half-vehicle.',
+			},
+			{
+				id: 4,
+				title: 'Treehouse',
+				desc: 'A place to stay built into the trunk or branches of a tree.',
+			},
+			{
+				id: 5,
+				title: 'Campsite',
+				desc: 'An area of land where guests can set up a tent, yurt, RV, or tiny house.',
+			},
+			{
+				id: 6,
+				title: 'Cave',
+				desc: 'A natural underground formation in a hillside or cliff.',
 			},
 		],
 	},
@@ -85,8 +160,33 @@ const hostPlaceCategoryData = [
 		describe: [
 			{
 				id: 0,
-				title: 'Rental unit',
-				desc: 'A rented place within a multi-unit-residential building or complex.',
+				title: 'Bed and Breakfast',
+				desc: 'A hospitality business offereing guests breakfast with a host on site.',
+			},
+			{
+				id: 1,
+				title: 'Nature lodge',
+				desc: 'A business offering stays near natural setting like forest mountaines.',
+			},
+			{
+				id: 2,
+				title: 'Farm stay',
+				desc: 'A rural stay where guests may spend time with animals, hiking, or crafting.',
+			},
+			{
+				id: 3,
+				title: 'Minsu',
+				desc: 'A hospitality business offering guests private rooms in Taiwan. ',
+			},
+			{
+				id: 4,
+				title: 'Casa particular',
+				desc: 'A private room in a home that feels like a bed and breakfast in Cuba',
+			},
+			{
+				id: 5,
+				title: 'Ryokan',
+				desc: 'A small iin offering guests in a uniqe cultural experience in Japan. ',
 			},
 		],
 	},
@@ -97,8 +197,38 @@ const hostPlaceCategoryData = [
 		describe: [
 			{
 				id: 0,
-				title: 'Rental unit',
-				desc: 'A rented place within a multi-unit-residential building or complex.',
+				title: 'Hotel',
+				desc: 'A business ofering private rooms, suites, or unique stayes for guests.',
+			},
+			{
+				id: 1,
+				title: 'Hostel',
+				desc: 'A hospitality business that rents bads in shared rooms and private rooms.',
+			},
+			{
+				id: 2,
+				title: 'Resort',
+				desc: 'A hospitality business with more amenities and service than a hotel.',
+			},
+			{
+				id: 3,
+				title: 'Nature lodge',
+				desc: 'A business offering stays near natural settings like forests or mountains.',
+			},
+			{
+				id: 4,
+				title: 'Aparthotel',
+				desc: 'A place with hotel-like amenities and rooms that feel like apertments.',
+			},
+			{
+				id: 5,
+				title: 'Serviced apertment',
+				desc: 'A place with hotel-like amenities serviced by a professional management company.',
+			},
+			{
+				id: 6,
+				title: 'Heritage hotel',
+				desc: 'A historic building converted to quest accomodations in India.',
 			},
 		],
 	},
