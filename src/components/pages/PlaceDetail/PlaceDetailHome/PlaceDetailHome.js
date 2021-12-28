@@ -9,8 +9,11 @@ import PlaceDetailRangePicker from '../PlaceDetailRangePicker/PlaceDetailRangePi
 import PlaceDetailReviewsContainer from '../PlaceDetailReviews/PlaceDetailReviewsContainer';
 import PlaceDetailHostInfo from '../PlaceDetailHostInfo/PlaceDetailHostInfo';
 import PlaceDetailThingsToKnow from '../PlaceDetailThingsToKnow/PlaceDetailThingsToKnow';
+import { useParams } from 'react-router-dom';
 
 const PlaceDetailHome = () => {
+	const { id } = useParams();
+	console.log(id);
 	const [dateRange, setDateRange] = useState([null, null]);
 
 	const handleClearDates = () => {

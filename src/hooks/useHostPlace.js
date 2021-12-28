@@ -3,6 +3,7 @@ import useAxios from '../hooks/useAxios';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useFirebase from './useFirebase.js';
 
 const initialGuestCount = {
 	guests: 5,
@@ -37,6 +38,7 @@ const useHostPlace = () => {
 	const [hostPlace, setHostPlace] = useState({});
 	const [isImgUploadingDone, setIsImgUploadingDone] = useState(false);
 	const [isPlaceUploading, setIsPlaceUploading] = useState(false);
+	const { user } = useFirebase();
 	const { client } = useAxios();
 	const navigate = useNavigate();
 
@@ -128,6 +130,12 @@ const useHostPlace = () => {
 			placeTitle,
 			placeDescription,
 			placePrice,
+			host: {
+				host_name: user.displayName,
+				host_avatar: user.photoURL,
+				host_id: user.uid,
+			},
+			placeReviews: [],
 		};
 		setHostPlace(newHostPlace);
 		navigate('/host/review');
