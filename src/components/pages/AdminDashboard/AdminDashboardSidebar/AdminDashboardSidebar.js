@@ -1,14 +1,39 @@
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AdminDashboardSidebar = () => {
 	return (
 		<div className='flex flex-col space-y-4 p-10'>
-			<Link to='profile'>profile</Link>
-			<Link to='users'>users</Link>
-			<Link to='admins'>admins</Link>
-			<Link to='places'>places</Link>
-			<Link to='orders'>orders</Link>
+			<Link
+				to='/dashboard/admin'
+				className='border border-white rounded-lg text-center py-2 text-lg bg-black'
+			>
+				Profile
+			</Link>
+			<Link
+				to='users'
+				className='border border-white rounded-lg text-center py-2 text-lg bg-black'
+			>
+				Users
+			</Link>
+			<Link
+				to='admins'
+				className='border border-white rounded-lg text-center py-2 text-lg bg-black'
+			>
+				Admins
+			</Link>
+			<Link
+				to='places'
+				className='border border-white rounded-lg text-center py-2 text-lg bg-black'
+			>
+				Places
+			</Link>
+			<Link
+				to='orders'
+				className='border border-white rounded-lg text-center py-2 text-lg bg-black'
+			>
+				Orders
+			</Link>
 		</div>
 	);
 };
