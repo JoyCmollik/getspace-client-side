@@ -13,10 +13,7 @@ const CategoryCarouselCard = () => {
 			</div>
 
 			<div className='shadow-2xl bg-white p-10 rounded-2xl w-10/12 mx-auto translate-middle absolute top-56 left-7'>
-				<p className='text-sm text-gray-400 py-1'>
-					B<span className='p-1'>E</span>A
-					<span className='p-1'>C</span>H
-				</p>
+				<p className='text-sm text-gray-400 py-1'>Adventure</p>
 				<h2 className='text-4xl font-medium text-gray-700'>
 					Cox's Bazar
 				</h2>
