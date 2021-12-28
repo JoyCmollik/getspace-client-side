@@ -1,31 +1,21 @@
-import { Avatar } from '@mui/material';
 import React from 'react';
+import { Avatar } from '@mui/material';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
-import firepit from '../../../../images/icons/fire-pit.svg';
-import poolball from '../../../../images/icons/pool-ball.svg';
-import indoorFirebase from '../../../../images/icons/indoor-firebase.svg';
-import dine from '../../../../images/icons/dine.svg';
-
-const standoutAmenitiesList = [
-	{
-		id: 0,
-		text: 'Pool',
-		iconCode: 'jlpgasyu',
-	},
-	{ id: 1, text: 'Hot tub', iconCode: 'wfroncyf' },
-	{ id: 2, text: 'BBQ grill', iconCode: 'coqbeapw' },
-	{
-		id: 3,
-		text: 'Fire pit',
-		icon: firepit,
-	},
-	{ id: 4, text: 'Pool table', icon: poolball },
-	{ id: 5, text: 'Indoor fireplace', icon: indoorFirebase },
-	{ id: 6, text: 'Outdoor dining area', icon: dine },
-	{ id: 7, text: 'Exercise equipment', iconCode: 'ouvpilty' },
-];
+import { useNavigate } from 'react-router-dom';
+import useHostProvider from '../../../../hooks/useHostProvider';
+import useFirebase from '../../../../hooks/useFirebase';
+import { getAmenities } from '../../../utilities/hostData';
 
 const HostPlaceReviewPost = () => {
+	const { hostPlace, placeImageFiles, handlePlaceStore } = useHostProvider();
+	const { user } = useFirebase();
+	const amenitiesList = getAmenities(hostPlace.placeAmenityList);
+	const navigate = useNavigate();
+
+	// making the first image viewable
+	Object.assign(placeImageFiles[0], {
+		preview: URL.createObjectURL(placeImageFiles[0]),
+	});
 	return (
 		<div className='h-screen grid grid-cols-2'>
 			{/* first column */}
@@ -48,41 +38,39 @@ const HostPlaceReviewPost = () => {
 					<article className='flex flex-col space-y-4'>
 						<img
 							className='object-cover w-full h-64 rounded-t-lg'
-							src='https://images.unsplash.com/photo-1586782023764-6774bd4df3af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJvdXRpcXVlJTIwaG90ZWx8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+							src={placeImageFiles[0].preview}
 							alt='pics'
 						/>
 						<div className='p-4 space-y-4'>
-							<h2 className='text-xl font-semibold'>Cheerful</h2>
+							<h2 className='text-xl font-semibold'>
+								{hostPlace.placeTitle}
+							</h2>
 							<hr />
 							<div className='flex justify-between items-center'>
 								<h4 className='text-lg font-medium w-8/12'>
-									Lorem ipsum dolor sit amet consectetur
-									adipisicing elit. Maiores, esse!
+									{hostPlace.placeDesc.desc}
 								</h4>
-								<Avatar />
+								<Avatar src={user?.photoURL} />
 							</div>
 							<hr />
 							<p className='flex items-center space-x-1'>
-								<span>15 guests</span>
+								<span>
+									{hostPlace.placeGuestCount.guests} guests
+								</span>
 								<span className='p-0.5 rounded-full bg-para ring-1' />
 								<span>Studio</span>
 								<span className='p-0.5 rounded-full bg-para ring-1' />
-								<span>1 bed</span>
+								<span>
+									{hostPlace.placeGuestCount.beds} bed
+								</span>
 								<span className='p-0.5 rounded-full bg-para ring-1' />
-								<span>1 bath</span>
+								<span>
+									{hostPlace.placeGuestCount.bathrooms} bath
+								</span>
 							</p>
 							<hr />
 							<p className='leading-tight'>
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Repudiandae voluptatem quod,
-								accusamus voluptatum rem cumque. Delectus,
-								voluptatum exercitationem ad mollitia repellat
-								perspiciatis numquam eveniet enim error sapiente
-								quo esse beatae eos et provident veritatis amet
-								aliquid perferendis, sunt laboriosam inventore
-								harum pariatur quibusdam! Cumque, quidem
-								dignissimos dolor sapiente deserunt
-								reprehenderit.
+								{hostPlace.placeDescription}
 							</p>
 							<hr />
 							{/* Amenities */}
@@ -91,7 +79,7 @@ const HostPlaceReviewPost = () => {
 									Amenities
 								</h4>
 								<div className='grid grid-cols-2 gap-x-8'>
-									{standoutAmenitiesList.map((amenity) => (
+									{amenitiesList.map((amenity) => (
 										<div
 											key={amenity.id}
 											className='py-2 flex justify-between items-center border-b'
@@ -130,7 +118,10 @@ const HostPlaceReviewPost = () => {
 				</div>
 				{/* host footer */}
 				<div className='border-t border-para py-4 flex justify-end'>
-					<button className='bg-brand text-white font-semibold px-5 py-2 rounded-3xl'>
+					<button
+						onClick={() => handlePlaceStore(navigate)}
+						className='bg-brand text-white font-semibold px-5 py-2 rounded-3xl'
+					>
 						Save your listing
 					</button>
 				</div>

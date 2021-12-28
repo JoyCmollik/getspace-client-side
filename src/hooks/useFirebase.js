@@ -28,7 +28,6 @@ const useFirebase = () => {
 
 	// register user
 	const handleRegisterUser = (name, email, password, location, navigate) => {
-		console.log(email, password);
 		setIsLoading(true);
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((result) => {
@@ -39,8 +38,8 @@ const useFirebase = () => {
 				}).then(() => {});
 				console.log(result.user);
 
-				// // saving data to the database
-				// saveUser(email, name, 'POST');
+				// saving data to the database
+				saveUser(email, name, 'POST');
 
 				// // TODO: fix redirect
 				const redirectURI = location.state?.from?.pathname || '/';
@@ -80,7 +79,7 @@ const useFirebase = () => {
 			.then((result) => {
 				setError('');
 				const user = result.user;
-				// saveUser(user.email, user.displayName, 'PUT');
+				saveUser(user.email, user.displayName, 'PUT');
 
 				const redirectURI = location.state?.from?.pathname || '/';
 				navigate(redirectURI);
@@ -100,9 +99,9 @@ const useFirebase = () => {
 				setUser(user);
 
 				// getting jwt token here
-				getIdToken(user).then((idToken) => {
-					setToken(idToken);
-				});
+				// getIdToken(user).then((idToken) => {
+				// 	setToken(idToken);
+				// });
 			} else {
 				setUser(null);
 			}

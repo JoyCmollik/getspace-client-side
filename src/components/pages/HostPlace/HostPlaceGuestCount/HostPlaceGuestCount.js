@@ -1,31 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 import { BsPlus, BsDash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-
-const initialGuestCount = {
-	guests: 5,
-	beds: 1,
-	bedrooms: 1,
-	bathrooms: 1,
-};
+import useHostProvider from '../../../../hooks/useHostProvider';
 
 const HostPlaceGuestCount = () => {
-	const [guestCount, setGuestCount] = useState(initialGuestCount);
-
-	const handleGuestCount = (key, operation) => {
-		setGuestCount((prevGuestCount) => {
-			let keyCount = prevGuestCount[key];
-
-			if (operation === 'increase') keyCount++;
-			else keyCount--;
-
-			const newGuestCount = { ...prevGuestCount };
-			newGuestCount[key] = keyCount;
-
-			return newGuestCount;
-		});
-	};
+	const { placeGuestCount, handlePlaceGuestCount } = useHostProvider();
 
 	const GuestCountItem = ({ guestCountKey }) => {
 		return (
@@ -36,28 +16,28 @@ const HostPlaceGuestCount = () => {
 				<div className='flex items-center space-x-4'>
 					<button
 						onClick={() =>
-							handleGuestCount(guestCountKey, 'decrease')
+							handlePlaceGuestCount(guestCountKey, 'decrease')
 						}
 						className={`p-1 rounded-full border text-2xl ${
-							guestCount[guestCountKey] === 1
+							placeGuestCount[guestCountKey] === 1
 								? 'border-gray-200 text-gray-200'
 								: 'border-para text-para'
 						}`}
-						disabled={guestCount[guestCountKey] === 1}
+						disabled={placeGuestCount[guestCountKey] === 1}
 					>
 						<BsDash />
 					</button>
-					<p className='text-lg'>{guestCount[guestCountKey]}</p>
+					<p className='text-lg'>{placeGuestCount[guestCountKey]}</p>
 					<button
 						onClick={() =>
-							handleGuestCount(guestCountKey, 'increase')
+							handlePlaceGuestCount(guestCountKey, 'increase')
 						}
 						className={`p-1 rounded-full border text-2xl ${
-							guestCount[guestCountKey] >= 16
+							placeGuestCount[guestCountKey] >= 16
 								? 'border-gray-200 text-gray-200'
 								: 'border-para text-para'
 						}`}
-						disabled={guestCount[guestCountKey] >= 16}
+						disabled={placeGuestCount[guestCountKey] >= 16}
 					>
 						<BsPlus />
 					</button>

@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
 import HostPlaceImagesUploader from './HostPlaceImagesUploader';
+import axios from 'axios';
+import useHostProvider from '../../../../hooks/useHostProvider';
 
 const HostPlaceImages = () => {
-	const [files, setFiles] = useState([]);
+	const { placeImageFiles, setPlaceImageFiles } = useHostProvider();
+
+	const uploadImage = (files) => {
+		// files.forEach((img) => {
+		// 	let body = new FormData();
+		// 	body.set('key', 'd845bc3ffcdbf53e0ef9ccaa71aab9ee');
+		// 	body.append('image', img);
+		// 	axios({
+		// 		method: 'post',
+		// 		url: 'https://api.imgbb.com/1/upload',
+		// 		data: body,
+		// 	}).then((resp) => {
+		// 		console.log(resp.data); // I'm aware it's data.data, that is how it returns stuff
+		// 	});
+		// });
+	};
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
@@ -25,8 +42,8 @@ const HostPlaceImages = () => {
 					<div className='flex flex-col space-y-4 w-8/12 mx-auto'>
 						<div className='space-y-8'>
 							<HostPlaceImagesUploader
-								files={files}
-								setFiles={setFiles}
+								placeImageFiles={placeImageFiles}
+								setPlaceImageFiles={setPlaceImageFiles}
 							/>
 						</div>
 					</div>
@@ -36,11 +53,11 @@ const HostPlaceImages = () => {
 					<Link to='/host/title'>
 						<button
 							className={`${
-								!files.length
+								!placeImageFiles.length
 									? 'bg-gray-400 text-black'
 									: 'bg-brand text-white'
 							} font-semibold px-5 py-2 rounded-3xl`}
-							disabled={files.length ? false : true}
+							disabled={placeImageFiles.length ? false : true}
 						>
 							Upload
 						</button>
