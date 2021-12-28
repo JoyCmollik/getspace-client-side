@@ -39,7 +39,8 @@ const Header = () => {
 
 					<div className='items-center md:flex my-2'>
 						<div className='flex flex-col md:flex-row md:mx-6 '>
-							<p
+							<Link
+								to=''
 								className='
             my-1
             text-dark
@@ -47,26 +48,28 @@ const Header = () => {
             md:mx-4 md:my-0
           '
 							>
+								Home
+							</Link>
+							<Link
+								to=''
+								className='
+            my-1
+            text-dark
+            md:mx-4 md:my-0
+          '
+							>
 								Places to stay
-							</p>
-							<p
+							</Link>
+							<Link
+								to=''
 								className='
             my-1
             text-dark
             md:mx-4 md:my-0
           '
 							>
-								Experiences
-							</p>
-							<p
-								className='
-            my-1
-            text-dark
-            md:mx-4 md:my-0
-          '
-							>
-								Online Experiences
-							</p>
+								Dashboard
+							</Link>
 						</div>
 					</div>
 					<div className='flex items-center space-x-4'>
