@@ -40,7 +40,7 @@ const Header = () => {
 					<div className='items-center md:flex my-2'>
 						<div className='flex flex-col md:flex-row md:mx-6 '>
 							<Link
-								to=''
+								to='/'
 								className='
             my-1
             text-dark
@@ -51,7 +51,7 @@ const Header = () => {
 								Home
 							</Link>
 							<Link
-								to=''
+								to='/places'
 								className='
             my-1
             text-dark
@@ -61,7 +61,7 @@ const Header = () => {
 								Places to stay
 							</Link>
 							<Link
-								to=''
+								to='dashboard/user'
 								className='
             my-1
             text-dark
