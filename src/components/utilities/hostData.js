@@ -3,6 +3,18 @@ import firepit from '../../images/icons/fire-pit.svg';
 import poolball from '../../images/icons/pool-ball.svg';
 import indoorFirebase from '../../images/icons/indoor-firebase.svg';
 import dine from '../../images/icons/dine.svg';
+import washer from '../../images/icons/washer.svg';
+
+import freepark from '../../images/icons/freepark.svg';
+import paidpark from '../../images/icons/paidpark.svg';
+
+import ac from '../../images/icons/ac.svg';
+import fire from '../../images/icons/fire.svg';
+import firstaid from '../../images/icons/firstaid.svg';
+import office from '../../images/icons/office.svg';
+import shower from '../../images/icons/outdoorshower.svg';
+import smoke from '../../images/icons/smoke.svg';
+import kitchen from '../../images/icons/kitchen.png';
 
 const hostPlaceCategoryData = [
 	{
@@ -262,21 +274,21 @@ const hostPlaceAmenitiesData = {
 
 	guestFavoritesAmenitiesList: [
 		{ id: 8, text: 'Wifi', iconCode: 'yzctygpq' },
-		{ id: 9, text: 'TV', icon: <FaSwimmingPool /> },
-		{ id: 10, text: 'Kitchen', icon: <FaSwimmingPool /> },
-		{ id: 11, text: 'Washer', icon: <FaSwimmingPool /> },
-		{ id: 12, text: 'Free parking on premises', icon: <FaSwimmingPool /> },
-		{ id: 13, text: 'Paid parking on premises', icon: <FaSwimmingPool /> },
-		{ id: 14, text: 'Air conditioning', icon: <FaSwimmingPool /> },
-		{ id: 15, text: 'Dedicated workspace', icon: <FaSwimmingPool /> },
-		{ id: 16, text: 'Outdoor shower', icon: <FaSwimmingPool /> },
+		{ id: 9, text: 'TV', iconCode: 'isvvzjbf' },
+		{ id: 10, text: 'Kitchen', icon: kitchen },
+		{ id: 11, text: 'Washer', icon: washer },
+		{ id: 12, text: 'Free parking on premises', icon: freepark },
+		{ id: 13, text: 'Paid parking on premises', icon: paidpark },
+		{ id: 14, text: 'Air conditioning', icon: ac },
+		{ id: 15, text: 'Dedicated workspace', icon: office },
+		{ id: 16, text: 'Outdoor shower', icon: shower },
 	],
 
 	guestSafetyAmenitiesList: [
-		{ id: 17, text: 'Smoke alarm', icon: <FaSwimmingPool /> },
-		{ id: 18, text: 'First aid kit', icon: <FaSwimmingPool /> },
-		{ id: 19, text: 'Carbon monoxide alarm', icon: <FaSwimmingPool /> },
-		{ id: 20, text: 'Fire extinguisher', icon: <FaSwimmingPool /> },
+		{ id: 17, text: 'Smoke alarm', icon: smoke },
+		{ id: 18, text: 'First aid kit', icon: firstaid },
+		{ id: 19, text: 'Carbon monoxide alarm', icon: smoke },
+		{ id: 20, text: 'Fire extinguisher', icon: fire },
 	],
 };
 
