@@ -3,6 +3,7 @@ import useAxios from '../../../../hooks/useAxios';
 import Header from '../../../shared/Header/Header';
 import SearchResultItem from '../../SearchResults/SearchResultItem/SearchResultItem';
 import loaderImag from '../../../../images/icons/loader.png';
+import Footer from '../../../shared/Footer/Footer';
 
 const PlaceListHome = () => {
 	const [placeList, setPlaceList] = useState(null);
@@ -20,38 +21,12 @@ const PlaceListHome = () => {
 	}, []);
 
 	return (
-		<div className='container mx-auto min-h-screen'>
+		<div className='min-h-screen space-y-8'>
 			<Header />
 
-			<div className='space-y-8'>
-				<form>
-					<select name='cars' id='cars'>
-						<option value='volvo'>Volvo</option>
-						<option value='saab'>Saab</option>
-						<option value='mercedes'>Mercedes</option>
-						<option value='audi'>Audi</option>
-					</select>
-					<select name='cars' id='cars'>
-						<option value='volvo'>Volvo</option>
-						<option value='saab'>Saab</option>
-						<option value='mercedes'>Mercedes</option>
-						<option value='audi'>Audi</option>
-					</select>
-					<select name='cars' id='cars'>
-						<option value='volvo'>Volvo</option>
-						<option value='saab'>Saab</option>
-						<option value='mercedes'>Mercedes</option>
-						<option value='audi'>Audi</option>
-					</select>
-					<select name='cars' id='cars'>
-						<option value='volvo'>Volvo</option>
-						<option value='saab'>Saab</option>
-						<option value='mercedes'>Mercedes</option>
-						<option value='audi'>Audi</option>
-					</select>
-				</form>
+			<div className='container mx-auto'>
 				<div className='space-y-4'>
-					<h2 className='py-5 text-2xl'>Apertment Details</h2>
+					<h2 className='py-5 text-2xl'>Explore Places</h2>
 					<div className='space-y-4'>
 						{placeList ? (
 							placeList.map((place) => (
@@ -68,6 +43,7 @@ const PlaceListHome = () => {
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 };

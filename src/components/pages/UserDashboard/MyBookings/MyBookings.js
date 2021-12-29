@@ -1,47 +1,61 @@
-import React from 'react';
-import { BsHouseDoor, BsPerson } from 'react-icons/bs';
-
-import { GiBathtub, GiBed } from 'react-icons/gi';
+import { Alert, AlertTitle } from '@mui/material';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import useAxios from '../../../../hooks/useAxios';
+import useFirebase from '../../../../hooks/useFirebase';
+import loaderImage from '../../../../images/icons/loader.png';
+import MyBookingItem from './MyBookingItem';
 
 const MyBookings = () => {
-	return (
-		<div>
-			<div className='grid grid-cols-12'>
-				<div className='col-span-3'>
-					<img
-						src='https://image.freepik.com/free-photo/luxury-bedroom-suite-resort-high-rise-hotel-with-working-table_105762-1783.jpg'
-						alt=''
-						srcset=''
-						className='rounded-lg h-36 ml-10'
-					/>
-				</div>
-				<div className='col-span-6 -ml-8'>
-					<p className='flex items-center space-x-2 text-red-700'>
-						<span>Fri, Jul 17th 2020</span>
-						<span>Sun, Jul 19th 2020</span>
-					</p>
-					<h1 className='text-2xl font-medium '>
-						Rose view apartment
-					</h1>
-					<p className='w-3/4 flex items-center space-x-2'>
-						<span>
-							<BsHouseDoor />
-						</span>
-						<span className='border-r-2 pr-2'>Studio </span>
-						<span>
-							<BsPerson />
-						</span>
-						<span className='border-r-2 pr-2'>4 guests</span>
-						<span>
-							<GiBed />
-						</span>
-						<span className='border-r-2 pr-2'>2 Bedroom</span>
-						<GiBathtub />
-						<span>1 Bathroom</span>
-					</p>
-				</div>
-				<div className='col-span-3'></div>
+	const [myBookings, setMyBookings] = useState(null);
+	const [isNoBookings, setIsNoBookings] = useState(false);
+	const { client } = useAxios();
+	const { user } = useFirebase();
+
+	useEffect(() => {
+		if (user) {
+			client
+				.get(`reservation/${user?.uid}`)
+				.then((response) => {
+					if (!response.data.length) {
+						setIsNoBookings(true);
+					}
+					setMyBookings(response.data);
+					setIsNoBookings(false);
+				})
+				.then((error) => {
+					console.log(error);
+				});
+		}
+	}, [user]);
+
+	if (isNoBookings) {
+		return (
+			<div className='py-10'>
+				<Alert severity='info'>
+					<AlertTitle>Things to know</AlertTitle>
+					Currently You Have No Bookings!
+				</Alert>
 			</div>
+		);
+	}
+
+	return (
+		<div className='py-10'>
+			{!myBookings ? (
+				<div className='flex justify-center items-center'>
+					<img src={loaderImage} alt='load' />
+				</div>
+			) : (
+				<div className='space-y-4'>
+					{myBookings.map((myBooking) => (
+						<MyBookingItem
+							key={myBooking._id}
+							myBooking={myBooking}
+						/>
+					))}
+				</div>
+			)}
 		</div>
 	);
 };

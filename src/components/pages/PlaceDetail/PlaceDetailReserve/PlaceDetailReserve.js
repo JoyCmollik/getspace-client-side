@@ -89,11 +89,14 @@ const PlaceDetailReserve = (props) => {
 			client_name: user?.displayName,
 			client_email: user?.email,
 			client_avatar: user?.photoURL,
+			client_uid: user?.uid,
+			host_uid: place.host.host_id,
 			place_guest_count: guestCount,
 			place_id: place._id,
 			place_image: placeImageList[0],
 			place_price: placePrice.price,
 			place_title: place.placeTitle,
+			reservation_status: 'pending',
 		};
 		setReservation(newReservation);
 		handleModalOpen();
@@ -254,6 +257,8 @@ const PlaceDetailReserve = (props) => {
 					costings={costings}
 					isReserveLoading={isReserveLoading}
 					setIsReserveLoading={setIsReserveLoading}
+					setDateRange={setDateRange}
+					handleModalClose={handleModalClose}
 				/>
 			</CustomModal>
 		</div>

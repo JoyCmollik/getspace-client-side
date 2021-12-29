@@ -25,7 +25,7 @@ const PlaceDetailInformation = ({ place }) => {
 			<div className='flex justify-between items-center'>
 				<div className='space-y-2'>
 					<h2 className='text-2xl font-semibold'>
-						{placeTitle} Hosted By {host.host_name}
+						{placeTitle} Hosted By {host?.host_name}
 					</h2>
 					<p className='flex items-center space-x-1'>
 						<span>{placeGuestCount.guests} guests</span>
