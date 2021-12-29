@@ -24,9 +24,8 @@ const PlaceDetailImages = ({ placeImageList }) => {
 			>
 				{placeImageList.length &&
 					placeImageList.map((placeImage, placeIdx) => (
-						<SwiperSlide>
+						<SwiperSlide key={placeIdx}>
 							<img
-								key={placeIdx}
 								className='object-cover w-full inline-block'
 								style={{ height: '400px' }}
 								src={placeImage}

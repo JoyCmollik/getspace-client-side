@@ -15,13 +15,15 @@ const UserDashboard = () => {
 			<Header />
 			<DashboardNav />
 
-			<Routes>
-				<Route path='profile' element={<Profile />} />
-				<Route path='bookings' element={<Bookings />} />
-				<Route path='mybookings' element={<MyBookings />} />
-				<Route path='places' element={<MyPlaces />} />
-				<Route index element={<UserDashboardHome />} />
-			</Routes>
+			<div className='container mx-auto'>
+				<Routes>
+					<Route path='profile' element={<Profile />} />
+					<Route path='bookings' element={<Bookings />} />
+					<Route path='mybookings' element={<MyBookings />} />
+					<Route path='places' element={<MyPlaces />} />
+					<Route index element={<UserDashboardHome />} />
+				</Routes>
+			</div>
 			<Footer />
 		</div>
 	);
