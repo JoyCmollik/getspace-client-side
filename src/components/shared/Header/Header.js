@@ -6,7 +6,7 @@ import useFirebase from '../../../hooks/useFirebase';
 import { Avatar } from '@mui/material';
 
 const Header = () => {
-	const { user } = useFirebase();
+	const { user, handleSignOut } = useFirebase();
 
 	return (
 		<div>
@@ -92,12 +92,28 @@ const Header = () => {
 									</button>
 								</Link>
 							) : (
-								<div className='flex items-center space-x-4 px-4 py-1 border box-shadow rounded-lg'>
-									<p>{user?.displayName?.split(' ', 1)[0]}</p>
-									<Avatar
-										src={user.photoURL}
-										style={{ width: 28, height: 28 }}
-									/>
+								<div className='flex items-center space-x-4'>
+									<div className='flex items-center space-x-4 px-4 py-1 border box-shadow rounded-lg'>
+										<p>
+											{
+												user?.displayName?.split(
+													' ',
+													1
+												)[0]
+											}
+										</p>
+										<Avatar
+											src={user.photoURL}
+											style={{ width: 28, height: 28 }}
+										/>
+									</div>
+
+									<button
+										onClick={handleSignOut}
+										className='btn-primary  px-4 py-1'
+									>
+										Sign Out
+									</button>
 								</div>
 							)}
 						</div>
