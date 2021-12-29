@@ -61,7 +61,7 @@ const Header = () => {
 								Places to stay
 							</Link>
 							<Link
-								to='dashboard/user'
+								to='/dashboard/user'
 								className='
             my-1
             text-dark
