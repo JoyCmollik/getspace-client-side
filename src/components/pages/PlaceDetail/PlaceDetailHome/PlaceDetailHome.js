@@ -11,6 +11,7 @@ import PlaceDetailHostInfo from '../PlaceDetailHostInfo/PlaceDetailHostInfo';
 import PlaceDetailThingsToKnow from '../PlaceDetailThingsToKnow/PlaceDetailThingsToKnow';
 import { useParams } from 'react-router-dom';
 import useAxios from '../../../../hooks/useAxios';
+import loaderImg from '../../../../images/icons/loader.png';
 
 const PlaceDetailHome = () => {
 	const { _id } = useParams();
@@ -41,46 +42,55 @@ const PlaceDetailHome = () => {
 	};
 
 	return (
-		<div className='min-h-screen flex-col justify-between'>
+		<div className='flex-col justify-between'>
 			<Header />
-			{place && (
-				<PlaceDetailImages placeImageList={place.placeImageList} />
-			)}
-			<div className='container mx-auto space-y-8 pb-10'>
-				{/* place detail and reserve */}
-				<div className='grid grid-cols-12 gap-x-28 relative'>
-					<div className='col-span-12 lg:col-span-7 xl:col-span-8 space-y-8'>
-						{place && <PlaceDetailInformation place={place} />}
+			{!place ? (
+				<div
+					className='flex-grow flex justify-center items-center'
+					style={{ minHeight: '50vh' }}
+				>
+					<img src={loaderImg} alt='loading' />
+				</div>
+			) : (
+				<>
+					<PlaceDetailImages placeImageList={place.placeImageList} />
+
+					<div className='container mx-auto space-y-8 pb-10'>
+						{/* place detail and reserve */}
+						<div className='grid grid-cols-12 gap-x-28 relative'>
+							<div className='col-span-12 lg:col-span-7 xl:col-span-8 space-y-8'>
+								<PlaceDetailInformation place={place} />
+
+								<hr />
+								<PlaceDetailRangePicker
+									dateRange={dateRange}
+									setDateRange={setDateRange}
+									handleClearDates={handleClearDates}
+									getDiffInNights={getDiffInNights}
+								/>
+							</div>
+							<div className='col-span-12 lg:col-span-5 xl:col-span-4'>
+								<PlaceDetailReserve
+									dateRange={dateRange}
+									setDateRange={setDateRange}
+									handleClearDates={handleClearDates}
+									getDiffInNights={getDiffInNights}
+									place={place}
+								/>
+							</div>
+						</div>
 						<hr />
-						<PlaceDetailRangePicker
-							dateRange={dateRange}
-							setDateRange={setDateRange}
-							handleClearDates={handleClearDates}
-							getDiffInNights={getDiffInNights}
-						/>
+						<PlaceDetailReviewsContainer />
+						<hr />
+						<PlaceDetailLocationMap />
+						<hr />
+						<div className='grid grid-cols-2 gap-x-20'>
+							<PlaceDetailHostInfo host={place.host} />
+							<PlaceDetailThingsToKnow />
+						</div>
 					</div>
-					<div className='col-span-12 lg:col-span-5 xl:col-span-4'>
-						{place && (
-							<PlaceDetailReserve
-								dateRange={dateRange}
-								setDateRange={setDateRange}
-								handleClearDates={handleClearDates}
-								getDiffInNights={getDiffInNights}
-								placePrice={place.placePrice}
-							/>
-						)}
-					</div>
-				</div>
-				<hr />
-				<PlaceDetailReviewsContainer />
-				<hr />
-				<PlaceDetailLocationMap />
-				<hr />
-				<div className='grid grid-cols-2 gap-x-20'>
-					{place && <PlaceDetailHostInfo host={place.host} />}
-					<PlaceDetailThingsToKnow />
-				</div>
-			</div>
+				</>
+			)}
 			<Footer />
 		</div>
 	);

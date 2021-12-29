@@ -4,7 +4,7 @@ const useAxios = () => {
 	// https://evening-eyrie-19528.herokuapp.com/
 	// http://localhost:5000/
 	const client = axios.create({
-		baseURL: 'https://evening-eyrie-19528.herokuapp.com/',
+		baseURL: 'http://localhost:5000/',
 	});
 	const admin = axios.create({
 		baseURL: 'http://localhost:5000/admin',

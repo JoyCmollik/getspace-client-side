@@ -261,7 +261,7 @@ const hostPlaceAmenitiesData = {
 	],
 
 	guestFavoritesAmenitiesList: [
-		{ id: 8, text: 'Wifi', icon: <FaSwimmingPool /> },
+		{ id: 8, text: 'Wifi', iconCode: 'yzctygpq' },
 		{ id: 9, text: 'TV', icon: <FaSwimmingPool /> },
 		{ id: 10, text: 'Kitchen', icon: <FaSwimmingPool /> },
 		{ id: 11, text: 'Washer', icon: <FaSwimmingPool /> },

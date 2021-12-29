@@ -4,6 +4,9 @@ import moment from 'moment';
 import CustomPopper from '../../../shared/CustomPopper/CustomPopper';
 import PlaceDetailGuestCount from '../PlaceDetailGuestCount/PlaceDetailGuestCount';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import CustomModal from '../../../shared/CustomModal/CustomModal';
+import useFirebase from '../../../../hooks/useFirebase';
+import PlaceDetailConfirmReserve from './PlaceDetailConfirmReserve';
 
 const initialGuestCount = {
 	adults: 1,
@@ -12,16 +15,26 @@ const initialGuestCount = {
 	pets: 1,
 };
 
-const PlaceDetailReserve = ({
-	dateRange,
-	getDiffInNights,
-	setDateRange,
-	handleClearDates,
-	placePrice,
-}) => {
+const PlaceDetailReserve = (props) => {
+	const {
+		dateRange,
+		getDiffInNights,
+		setDateRange,
+		handleClearDates,
+		place,
+	} = props;
+	const { placePrice, placeImageList } = place;
+	const [reservation, setReservation] = useState({});
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [popperAnchor, setPopperAnchor] = useState(null);
 	const [guestCount, setGuestCount] = useState(initialGuestCount);
+	const [modalOpen, setModalOpen] = useState(false);
+	const { user } = useFirebase();
+	const [isReserveLoading, setIsReserveLoading] = useState(false);
+
+	// control for reserve modal
+	const handleModalOpen = () => setModalOpen(true);
+	const handleModalClose = () => setModalOpen(false);
 
 	// control functions of reserve date selection popover
 	const handleReserveDatePopover = (event) => {
@@ -51,16 +64,40 @@ const PlaceDetailReserve = ({
 		});
 	};
 
+	// calculations regarding date range
 	const nights = dateRange[1]
 		? getDiffInNights(
 				new Date(dateRange[0]?._d),
 				new Date(dateRange[1]?._d)
 		  )
 		: 1;
-	const nightStayCost = nights * Number(placePrice.price);
-	const serviceFee = nights * Number(placePrice.price) * 0.05;
-	const taxFees = nights * Number(placePrice.price) * 0.1;
-	const grandTotal = nightStayCost + serviceFee + taxFees;
+
+	const costings = {
+		nightStayCost: nights * Number(placePrice.price),
+		serviceFee: nights * Number(placePrice.price) * 0.05,
+		taxFees: nights * Number(placePrice.price) * 0.1,
+	};
+	const grandTotal =
+		costings.nightStayCost + costings.serviceFee + costings.taxFees;
+
+	// control for placing reservation
+	const handleReserveConfirmDialog = () => {
+		const newReservation = {
+			check_in: dateRange[0]._d,
+			check_out: dateRange[1]._d,
+			total_cost: grandTotal,
+			client_name: user?.displayName,
+			client_email: user?.email,
+			client_avatar: user?.photoURL,
+			place_guest_count: guestCount,
+			place_id: place._id,
+			place_image: placeImageList[0],
+			place_price: placePrice.price,
+			place_title: place.placeTitle,
+		};
+		setReservation(newReservation);
+		handleModalOpen();
+	};
 
 	return (
 		<div className='sticky top-10 py-8'>
@@ -175,8 +212,12 @@ const PlaceDetailReserve = ({
 					</div>
 				</div>
 				{/* reserve */}
-				<button className='btn-primary py-4 text-xl w-full'>
-					Reserve
+				<button
+					onClick={handleReserveConfirmDialog}
+					className='btn-primary py-4 text-xl w-full'
+					disable={dateRange[1] ? 'false' : 'true'}
+				>
+					{!dateRange[1] ? 'Select a date' : 'Reserve'}
 				</button>
 				{/* calculations */}
 				{dateRange[1] && (
@@ -185,15 +226,15 @@ const PlaceDetailReserve = ({
 							<span>
 								${placePrice.price} x {nights} nights
 							</span>
-							<span>${nightStayCost}</span>
+							<span>${costings.nightStayCost}</span>
 						</li>
 						<li className='flex justify-between items-center'>
 							<span>Service fee</span>
-							<span>${serviceFee.toPrecision(4)}</span>
+							<span>${costings.serviceFee.toPrecision(4)}</span>
 						</li>
 						<li className='flex justify-between items-center'>
 							<span>Occupancy taxes and fees</span>
-							<span>${taxFees.toPrecision(4)}</span>
+							<span>${costings.taxFees.toPrecision(4)}</span>
 						</li>
 						<hr />
 						<li className='flex justify-between items-center font-medium'>
@@ -203,6 +244,18 @@ const PlaceDetailReserve = ({
 					</ul>
 				)}
 			</div>
+			<CustomModal
+				modalOpen={modalOpen}
+				handleModalClose={handleModalClose}
+			>
+				<PlaceDetailConfirmReserve
+					reservation={reservation}
+					nights={nights}
+					costings={costings}
+					isReserveLoading={isReserveLoading}
+					setIsReserveLoading={setIsReserveLoading}
+				/>
+			</CustomModal>
 		</div>
 	);
 };

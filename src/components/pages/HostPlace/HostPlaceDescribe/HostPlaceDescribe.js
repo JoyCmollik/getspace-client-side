@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HostPlaceHeader from '../HostPlaceHeader/HostPlaceHeader';
-import { hostPlaceCategoryData } from '../../../utilities/hostData';
 import useHostProvider from '../../../../hooks/useHostProvider';
 
 const HostPlaceDescribe = () => {
-	const { placeDesc, handlePlaceDesc } = useHostProvider();
+	const { placeType, placeDesc, handlePlaceDesc } = useHostProvider();
 
 	return (
 		<div className='h-screen grid grid-cols-2'>
@@ -25,7 +24,7 @@ const HostPlaceDescribe = () => {
 				<div className='overflow-y-auto py-5 scroll-hide'>
 					<div className='flex-grow flex flex-col space-y-4 justify-center items-center'>
 						{/* list */}
-						{hostPlaceCategoryData[0].describe.map((desc) => (
+						{placeType.describe.map((desc) => (
 							<button
 								key={desc.id}
 								onClick={() => handlePlaceDesc(desc)}
